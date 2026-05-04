@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Suivi Nutritionnel · Modern</title>
-    <!-- Favicon (optionnel, toujours le même fichier favicon.png à la racine) -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <!-- Google Fonts plus lisibles -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Suivi Nutritionnel · Dark Edition</title>
+    <!-- Favicon en .jpg -->
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,27 +15,24 @@
         }
 
         :root {
-            --bg: #f9fafb;           /* fond général blanc légèrement teinté */
-            --card: #ffffff;
-            --border: #e9eef2;
-            --text: #1a1f2e;
-            --muted: #6c7a91;
-            --accent: #2563eb;       /* bleu moderne */
-            --accent-dark: #1e40af;
-            --green: #10b981;
-            --green-bg: #ecfdf5;
-            --orange: #f59e0b;
-            --orange-bg: #fffbeb;
+            --bg: #0f1117;           /* fond très sombre */
+            --card-bg: #181c24;
+            --border: #2c313c;
+            --text: #f0f3f8;
+            --text-muted: #8a92a6;
+            --accent: #3b82f6;       /* bleu vif moderne */
+            --accent-dark: #1e3a8a;
+            --green: #22c55e;
+            --green-bg: #162b1d;
+            --orange: #f97316;
+            --orange-bg: #2e2215;
             --red: #ef4444;
-            --red-bg: #fef2f2;
+            --red-bg: #2c1a1a;
             --blue: #3b82f6;
-            --blue-bg: #eff6ff;
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --radius-sm: 12px;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -2px rgba(0, 0, 0, 0.03), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --blue-bg: #18233a;
+            --radius: 20px;
+            --radius-sm: 14px;
+            --shadow: 0 8px 20px rgba(0,0,0,0.4);
             --transition: all 0.2s ease;
         }
 
@@ -44,7 +40,6 @@
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            min-height: 100vh;
             padding: 24px 16px;
             line-height: 1.5;
         }
@@ -57,7 +52,7 @@
             gap: 20px;
         }
 
-        /* En-tête */
+        /* Header */
         .app-header {
             text-align: center;
             margin-bottom: 8px;
@@ -66,16 +61,16 @@
         .app-header h1 {
             font-size: 28px;
             font-weight: 700;
-            letter-spacing: -0.6px;
-            background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #fff, #60a5fa);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            letter-spacing: -0.5px;
         }
         .app-header .date {
             font-size: 14px;
             font-weight: 500;
-            color: var(--muted);
+            color: var(--text-muted);
             font-family: 'JetBrains Mono', monospace;
             margin-top: 6px;
         }
@@ -83,16 +78,15 @@
             position: absolute;
             right: 0;
             top: 8px;
-            background: var(--card);
+            background: var(--card-bg);
             padding: 6px 12px;
             border-radius: 40px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             color: var(--accent);
             text-decoration: none;
             border: 1px solid var(--border);
             transition: var(--transition);
-            backdrop-filter: blur(4px);
         }
         .help-link:hover {
             background: var(--accent);
@@ -100,32 +94,31 @@
             border-color: var(--accent);
         }
 
-        /* Cartes modernes */
+        /* Cartes */
         .card {
-            background: var(--card);
-            border-radius: var(--radius-lg);
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 20px;
             border: 1px solid var(--border);
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
         .card:hover {
-            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
         }
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
         .card-title {
             font-size: 16px;
             font-weight: 600;
-            letter-spacing: -0.2px;
-            color: var(--text);
-            background: rgba(37, 99, 235, 0.08);
-            padding: 4px 12px;
+            background: rgba(59,130,246,0.15);
+            padding: 5px 14px;
             border-radius: 40px;
+            letter-spacing: -0.2px;
         }
         .btn-group {
             display: flex;
@@ -135,13 +128,12 @@
             background: var(--bg);
             border: 1px solid var(--border);
             padding: 6px 14px;
-            border-radius: 40px;
+            border-radius: 30px;
             font-size: 12px;
             font-weight: 500;
             color: var(--text);
             cursor: pointer;
             transition: var(--transition);
-            font-family: 'Inter', sans-serif;
         }
         .btn-small:hover {
             background: var(--accent);
@@ -149,7 +141,7 @@
             color: white;
         }
 
-        /* Grille nutritionnelle */
+        /* Grille nutriments */
         .nutrient-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -157,268 +149,251 @@
         }
         .nutrient-box {
             background: var(--bg);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             padding: 12px 6px;
             text-align: center;
             border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-        .nutrient-box:hover {
-            transform: translateY(-2px);
-            background: white;
         }
         .nutrient-label {
             font-size: 11px;
-            font-weight: 500;
-            color: var(--muted);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            color: var(--text-muted);
         }
         .nutrient-value {
             font-size: 18px;
             font-weight: 700;
             margin-top: 6px;
             font-family: 'JetBrains Mono', monospace;
-            line-height: 1.2;
         }
 
-        /* Sections colorées "Reste à consommer" */
-        .remaining .nutrient-box:nth-child(1) {
-            background: var(--green-bg);
-            border-color: #c6f7e2;
-        }
-        .remaining .nutrient-box:nth-child(1) .nutrient-value { color: #047857; }
-        .remaining .nutrient-box:nth-child(2) {
-            background: var(--orange-bg);
-            border-color: #fde68a;
-        }
-        .remaining .nutrient-box:nth-child(2) .nutrient-value { color: #b45309; }
-        .remaining .nutrient-box:nth-child(3) {
-            background: var(--blue-bg);
-            border-color: #bfdbfe;
-        }
-        .remaining .nutrient-box:nth-child(3) .nutrient-value { color: #1d4ed8; }
-        .remaining .nutrient-box:nth-child(4) {
-            background: var(--red-bg);
-            border-color: #fecaca;
-        }
-        .remaining .nutrient-box:nth-child(4) .nutrient-value { color: #dc2626; }
-        .nutrient-box.over {
-            background: #fef2f2 !important;
-            border-color: #fecaca !important;
-        }
-        .nutrient-box.over .nutrient-value { color: #e11d48 !important; }
+        /* Reste à consommer (couleurs) */
+        .remaining .nutrient-box:nth-child(1) { background: var(--green-bg); border-color: #22c55e40; }
+        .remaining .nutrient-box:nth-child(1) .nutrient-value { color: #4ade80; }
+        .remaining .nutrient-box:nth-child(2) { background: var(--orange-bg); border-color: #f9731640; }
+        .remaining .nutrient-box:nth-child(2) .nutrient-value { color: #fb923c; }
+        .remaining .nutrient-box:nth-child(3) { background: var(--blue-bg); border-color: #3b82f640; }
+        .remaining .nutrient-box:nth-child(3) .nutrient-value { color: #60a5fa; }
+        .remaining .nutrient-box:nth-child(4) { background: var(--red-bg); border-color: #ef444440; }
+        .remaining .nutrient-box:nth-child(4) .nutrient-value { color: #f87171; }
+        .nutrient-box.over { background: #451e1e !important; border-color: #ef4444 !important; }
+        .nutrient-box.over .nutrient-value { color: #ff8585 !important; }
 
-        /* Barres de progression modernes */
-        .progress-section {
-            margin-top: 8px;
-        }
-        .progress-bar-wrap {
-            margin-bottom: 16px;
-        }
-        .progress-label-row {
+        /* Barres verticales (jauges) */
+        .progress-gauge {
             display: flex;
+            gap: 24px;
             justify-content: space-between;
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 500;
+            flex-wrap: wrap;
         }
-        .progress-track {
-            height: 8px;
-            background: var(--border);
-            border-radius: 20px;
+        .gauge-item {
+            flex: 1;
+            text-align: center;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            padding: 12px 8px;
+            border: 1px solid var(--border);
+        }
+        .gauge-label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .gauge-bar-vertical {
+            width: 24px;
+            height: 120px;
+            background: #2a2f3c;
+            border-radius: 40px;
+            margin: 0 auto 12px auto;
+            position: relative;
             overflow: hidden;
         }
-        .progress-fill {
-            height: 100%;
-            border-radius: 20px;
-            transition: width 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        .gauge-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(0deg, #22c55e, #4ade80);
+            transition: height 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border-radius: 40px;
         }
-        .fill-cal { background: linear-gradient(90deg, #10b981, #34d399); }
-        .fill-prot { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-        .fill-lip { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-        .fill-gluc { background: linear-gradient(90deg, #ef4444, #f87171); }
-        .fill-over { background: #e11d48; }
+        .gauge-fill.fill-prot { background: linear-gradient(0deg, #f97316, #fbbf24); }
+        .gauge-fill.fill-lip { background: linear-gradient(0deg, #3b82f6, #60a5fa); }
+        .gauge-fill.fill-gluc { background: linear-gradient(0deg, #ef4444, #f87171); }
+        .gauge-fill.fill-over { background: #e11d48; }
+        .gauge-percent {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        .gauge-text {
+            font-size: 12px;
+            margin-top: 8px;
+            color: var(--text);
+            font-weight: 500;
+        }
 
-        /* Historique (liste d'aliments) */
+        /* Historique */
         .history-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
             max-height: 260px;
             overflow-y: auto;
-            padding-right: 4px;
         }
         .history-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: var(--bg);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             padding: 12px;
             border: 1px solid var(--border);
             transition: var(--transition);
         }
         .history-item:hover {
             border-color: var(--accent);
-            background: white;
+            background: #1e2430;
         }
         .history-name { font-weight: 600; font-size: 14px; }
-        .history-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-        .history-cals { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--accent); }
+        .history-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+        .history-cals { font-family: monospace; font-weight: 600; color: var(--accent); }
         .history-delete {
             background: none;
             border: none;
+            color: var(--text-muted);
             font-size: 18px;
             cursor: pointer;
-            color: var(--muted);
             padding: 0 6px;
             transition: var(--transition);
         }
         .history-delete:hover { color: var(--red); transform: scale(1.1); }
         .empty-state {
             text-align: center;
-            padding: 32px 16px;
-            color: var(--muted);
-            font-size: 14px;
+            padding: 32px;
+            color: var(--text-muted);
             background: var(--bg);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             border: 1px dashed var(--border);
         }
 
-        /* Zone d'ajout */
+        /* Ajout d'aliment */
         .preview-card {
-            background: linear-gradient(135deg, #f9fafb, #ffffff);
-            border-radius: var(--radius-md);
+            background: var(--bg);
+            border-radius: var(--radius-sm);
             padding: 16px;
             margin-bottom: 20px;
             border: 1px solid var(--border);
-            box-shadow: var(--shadow-sm);
         }
         .preview-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--accent);
             text-transform: uppercase;
+            margin-bottom: 10px;
             letter-spacing: 1px;
-            margin-bottom: 12px;
         }
         .preview-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
-        .preview-weight { font-size: 12px; color: var(--muted); margin-bottom: 12px; font-family: monospace; }
-        .preview-empty { color: var(--muted); font-style: italic; }
-
+        .preview-weight { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+        .preview-empty { font-style: italic; color: var(--text-muted); }
         .input-field {
             width: 100%;
-            padding: 14px 16px;
+            padding: 14px;
+            background: var(--bg);
             border: 1.5px solid var(--border);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            background: white;
+            color: var(--text);
             transition: var(--transition);
-            outline: none;
         }
         .input-field:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            outline: none;
+            background: #10131c;
         }
-        .input-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
-        }
+        .input-row { margin-top: 8px; }
         .btn-add {
             width: 100%;
             padding: 14px;
             background: var(--accent);
             color: white;
             border: none;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
             margin-top: 16px;
+            cursor: pointer;
             transition: var(--transition);
-            font-family: 'Inter', sans-serif;
         }
         .btn-add:hover {
             background: var(--accent-dark);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
-        /* Suggestions (autocomplete) */
+        /* Suggestions */
         .suggestions { position: relative; }
         .suggestions-list {
             position: absolute;
             top: calc(100% - 4px);
             left: 0;
             right: 0;
-            background: white;
-            border-radius: var(--radius-md);
+            background: var(--card-bg);
             border: 1px solid var(--border);
-            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius-sm);
             z-index: 100;
             max-height: 240px;
             overflow-y: auto;
         }
         .suggestion-item {
-            padding: 12px 16px;
+            padding: 12px;
             cursor: pointer;
-            font-size: 14px;
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid var(--border);
-            transition: var(--transition);
         }
-        .suggestion-item:hover { background: var(--bg); }
+        .suggestion-item:hover { background: var(--accent); color: white; }
         .sug-name { font-weight: 500; }
-        .sug-info { color: var(--muted); font-family: monospace; font-size: 12px; }
+        .sug-info { font-family: monospace; font-size: 12px; opacity: 0.8; }
 
         /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(4px);
-            z-index: 200;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
+            z-index: 200;
             padding: 20px;
         }
         .modal-overlay.open { display: flex; }
         .modal {
-            background: white;
-            border-radius: var(--radius-lg);
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 24px;
             width: 100%;
             max-width: 360px;
-            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
         }
-        .modal h2 { font-size: 20px; margin-bottom: 20px; font-weight: 700; }
-        .modal-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-        .modal-field label { font-size: 12px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 4px; }
+        .modal h2 { font-size: 20px; margin-bottom: 20px; }
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+        .modal-field label { font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px; }
         .modal-field input {
             width: 100%;
             padding: 12px;
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius-sm);
-            font-family: monospace;
-            font-weight: 600;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
         }
         .modal-buttons { display: flex; gap: 12px; }
         .btn-save, .btn-cancel {
             flex: 1;
             padding: 12px;
-            border-radius: var(--radius-sm);
+            border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
             border: none;
@@ -431,25 +406,18 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--text);
+            background: #1f2937;
             color: white;
             padding: 10px 20px;
-            border-radius: 60px;
-            font-size: 14px;
-            font-weight: 500;
+            border-radius: 50px;
+            font-size: 13px;
             opacity: 0;
             transition: opacity 0.2s;
             pointer-events: none;
             z-index: 300;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 4px 12px black;
         }
         .toast.show { opacity: 1; }
-
-        @media (max-width: 460px) {
-            .container { gap: 16px; }
-            .card { padding: 16px; }
-            .nutrient-value { font-size: 16px; }
-        }
     </style>
 </head>
 <body>
@@ -477,25 +445,37 @@
         </div>
     </div>
 
-    <!-- Progression -->
+    <!-- Progression avec jauges verticales -->
     <div class="card">
-        <div class="card-header"><span class="card-title">📈 Progression du jour</span></div>
-        <div class="progress-section">
-            <div class="progress-bar-wrap">
-                <div class="progress-label-row"><span>Calories</span><span id="prog-cal-txt">0 / 2000 kcal</span></div>
-                <div class="progress-track"><div class="progress-fill fill-cal" id="prog-cal" style="width:0%"></div></div>
+        <div class="card-header"><span class="card-title">📊 Objectifs (jauges)</span></div>
+        <div class="progress-gauge" id="gauge-container">
+            <!-- Calories -->
+            <div class="gauge-item">
+                <div class="gauge-label"><span>Calories</span></div>
+                <div class="gauge-bar-vertical" style="position:relative"><div class="gauge-fill" id="gauge-cal" style="height:0%; background:linear-gradient(0deg, #22c55e, #4ade80)"></div></div>
+                <div class="gauge-percent" id="gauge-cal-pct">0%</div>
+                <div class="gauge-text" id="gauge-cal-txt">0 / 2000 kcal</div>
             </div>
-            <div class="progress-bar-wrap">
-                <div class="progress-label-row"><span>Protéines</span><span id="prog-prot-txt">0 / 75 g</span></div>
-                <div class="progress-track"><div class="progress-fill fill-prot" id="prog-prot" style="width:0%"></div></div>
+            <!-- Protéines -->
+            <div class="gauge-item">
+                <div class="gauge-label"><span>Protéines</span></div>
+                <div class="gauge-bar-vertical"><div class="gauge-fill fill-prot" id="gauge-prot" style="height:0%"></div></div>
+                <div class="gauge-percent" id="gauge-prot-pct">0%</div>
+                <div class="gauge-text" id="gauge-prot-txt">0 / 75 g</div>
             </div>
-            <div class="progress-bar-wrap">
-                <div class="progress-label-row"><span>Lipides</span><span id="prog-lip-txt">0 / 70 g</span></div>
-                <div class="progress-track"><div class="progress-fill fill-lip" id="prog-lip" style="width:0%"></div></div>
+            <!-- Lipides -->
+            <div class="gauge-item">
+                <div class="gauge-label"><span>Lipides</span></div>
+                <div class="gauge-bar-vertical"><div class="gauge-fill fill-lip" id="gauge-lip" style="height:0%"></div></div>
+                <div class="gauge-percent" id="gauge-lip-pct">0%</div>
+                <div class="gauge-text" id="gauge-lip-txt">0 / 70 g</div>
             </div>
-            <div class="progress-bar-wrap" style="margin-bottom:0">
-                <div class="progress-label-row"><span>Glucides</span><span id="prog-gluc-txt">0 / 250 g</span></div>
-                <div class="progress-track"><div class="progress-fill fill-gluc" id="prog-gluc" style="width:0%"></div></div>
+            <!-- Glucides -->
+            <div class="gauge-item">
+                <div class="gauge-label"><span>Glucides</span></div>
+                <div class="gauge-bar-vertical"><div class="gauge-fill fill-gluc" id="gauge-gluc" style="height:0%"></div></div>
+                <div class="gauge-percent" id="gauge-gluc-pct">0%</div>
+                <div class="gauge-text" id="gauge-gluc-txt">0 / 250 g</div>
             </div>
         </div>
     </div>
@@ -522,13 +502,13 @@
         </div>
     </div>
 
-    <!-- Historique des aliments du jour -->
+    <!-- Historique -->
     <div class="card">
         <div class="card-header"><span class="card-title">📋 Aliments du jour</span></div>
         <div class="history-list" id="historyList"><div class="empty-state" id="emptyState">Aucun aliment ajouté</div></div>
     </div>
 
-    <!-- Zone d'ajout d'aliment -->
+    <!-- Ajout aliment -->
     <div class="card">
         <div class="card-header"><span class="card-title">➕ Ajouter un aliment</span></div>
         <div class="preview-card" id="previewCard">
@@ -546,17 +526,17 @@
             </div>
         </div>
         <div class="suggestions">
-            <input type="text" class="input-field" id="foodInput" placeholder="🔍 Aliment (ex: poulet, banane, riz…)" autocomplete="off" aria-label="Nom de l'aliment">
+            <input type="text" class="input-field" id="foodInput" placeholder="🔍 Aliment (ex: poulet, banane, riz…)" autocomplete="off">
             <div class="suggestions-list" id="suggestionsList" style="display:none"></div>
         </div>
         <div class="input-row">
-            <input type="number" class="input-field" id="weightInput" placeholder="Poids (g)" min="1" max="2000" step="1" aria-label="Poids en grammes">
+            <input type="number" class="input-field" id="weightInput" placeholder="Poids (g)" min="1" max="2000" step="1">
         </div>
         <button class="btn-add" id="addBtn">Ajouter</button>
     </div>
 </div>
 
-<!-- Modal édition besoins -->
+<!-- Modal -->
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
         <h2>🎯 Besoins Quotidiens</h2>
@@ -572,16 +552,11 @@
         </div>
     </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
-<!-- Chargement de la base externe -->
 <script src="aliments.js"></script>
-
-<!-- Script principal (identique à l'original, seules les classes CSS changent) -->
 <script>
     (function() {
-        // ---------- État ----------
         let state = {
             needs: { cal: 2000, prot: 75, lip: 70, gluc: 250 },
             consumed: { cal: 0, prot: 0, lip: 0, gluc: 0 },
@@ -589,7 +564,7 @@
             selectedFood: null,
         };
 
-        // ---------- DOM elements ----------
+        // DOM
         const foodInput = document.getElementById('foodInput');
         const weightInput = document.getElementById('weightInput');
         const suggestionsList = document.getElementById('suggestionsList');
@@ -606,7 +581,6 @@
         const toast = document.getElementById('toast');
         const historyList = document.getElementById('historyList');
 
-        // ---------- Initialisation ----------
         function init() {
             const saved = localStorage.getItem('nutri-state');
             const savedDate = localStorage.getItem('nutri-date');
@@ -625,48 +599,45 @@
         }
         function saveState() { localStorage.setItem('nutri-state', JSON.stringify(state)); }
 
-        // ---------- UI ----------
         function updateUI() {
             const { needs, consumed } = state;
+            // besoins
             document.getElementById('need-cal').textContent = needs.cal;
             document.getElementById('need-prot').textContent = needs.prot + 'g';
             document.getElementById('need-lip').textContent = needs.lip + 'g';
             document.getElementById('need-gluc').textContent = needs.gluc + 'g';
-
+            // cumul
             document.getElementById('tot-cal').textContent = Math.round(consumed.cal);
             document.getElementById('tot-prot').textContent = Math.round(consumed.prot) + 'g';
             document.getElementById('tot-lip').textContent = Math.round(consumed.lip) + 'g';
             document.getElementById('tot-gluc').textContent = Math.round(consumed.gluc) + 'g';
-
+            // reste
             const remCal = needs.cal - consumed.cal;
             const remProt = needs.prot - consumed.prot;
             const remLip = needs.lip - consumed.lip;
             const remGluc = needs.gluc - consumed.gluc;
-
             document.getElementById('rem-cal').textContent = Math.round(remCal);
             document.getElementById('rem-prot').textContent = Math.round(remProt) + 'g';
             document.getElementById('rem-lip').textContent = Math.round(remLip) + 'g';
             document.getElementById('rem-gluc').textContent = Math.round(remGluc) + 'g';
-
             const remBoxes = document.querySelectorAll('#grid-remaining .nutrient-box');
             [remCal, remProt, remLip, remGluc].forEach((val, i) => remBoxes[i].classList.toggle('over', val < 0));
 
-            const setBar = (id, val, max, txtId, unit) => {
-                const percent = Math.min(100, Math.max(0, (val / max) * 100));
-                const bar = document.getElementById(id);
-                bar.style.width = percent + '%';
+            // Mise à jour des jauges verticales
+            const setGauge = (id, val, max, txtId, pctId, unit) => {
+                let percent = max > 0 ? (val / max) * 100 : 0;
+                percent = Math.min(100, Math.max(0, percent));
+                const gaugeDiv = document.getElementById(id);
+                if (gaugeDiv) gaugeDiv.style.height = percent + '%';
                 const over = val > max;
-                bar.className = 'progress-fill ' + (over ? 'fill-over' : bar.dataset.color);
                 document.getElementById(txtId).textContent = `${Math.round(val)} / ${max} ${unit}${over ? ' ⚠️' : ''}`;
+                document.getElementById(pctId).textContent = Math.floor(percent) + '%';
+                if (over && gaugeDiv) gaugeDiv.classList.add('fill-over');
             };
-            document.getElementById('prog-cal').dataset.color = 'fill-cal';
-            document.getElementById('prog-prot').dataset.color = 'fill-prot';
-            document.getElementById('prog-lip').dataset.color = 'fill-lip';
-            document.getElementById('prog-gluc').dataset.color = 'fill-gluc';
-            setBar('prog-cal', consumed.cal, needs.cal, 'prog-cal-txt', 'kcal');
-            setBar('prog-prot', consumed.prot, needs.prot, 'prog-prot-txt', 'g');
-            setBar('prog-lip', consumed.lip, needs.lip, 'prog-lip-txt', 'g');
-            setBar('prog-gluc', consumed.gluc, needs.gluc, 'prog-gluc-txt', 'g');
+            setGauge('gauge-cal', consumed.cal, needs.cal, 'gauge-cal-txt', 'gauge-cal-pct', 'kcal');
+            setGauge('gauge-prot', consumed.prot, needs.prot, 'gauge-prot-txt', 'gauge-prot-pct', 'g');
+            setGauge('gauge-lip', consumed.lip, needs.lip, 'gauge-lip-txt', 'gauge-lip-pct', 'g');
+            setGauge('gauge-gluc', consumed.gluc, needs.gluc, 'gauge-gluc-txt', 'gauge-gluc-pct', 'g');
 
             renderHistory();
         }
@@ -686,7 +657,7 @@
                 el.className = 'history-item';
                 el.innerHTML = `
                     <div>
-                        <div class="history-name">${item.label} <span style="font-weight:400;color:var(--muted);font-size:11px">${item.weight}g</span></div>
+                        <div class="history-name">${item.label} <span style="font-weight:400;color:var(--text-muted);font-size:11px">${item.weight}g</span></div>
                         <div class="history-sub">${Math.round(item.prot)}g prot · ${Math.round(item.lip)}g lip · ${Math.round(item.gluc)}g gluc</div>
                     </div>
                     <div style="display:flex;align-items:center;gap:8px">
@@ -703,7 +674,6 @@
             });
         }
 
-        // ---------- Suppression ----------
         function deleteItem(index) {
             const item = state.history[index];
             if (!item) return;
@@ -717,13 +687,11 @@
             showToast('🗑️ Aliment supprimé');
         }
 
-        // ---------- Ajout ----------
         function addFood() {
             const food = state.selectedFood;
             const weight = parseFloat(weightInput.value);
             if (!food) { showToast('⚠️ Sélectionnez un aliment'); return; }
-            if (isNaN(weight) || weight <= 0) { showToast('⚠️ Poids valide en grammes'); return; }
-
+            if (isNaN(weight) || weight <= 0) { showToast('⚠️ Poids valide'); return; }
             const factor = weight / 100;
             const entry = {
                 label: food.label,
@@ -738,27 +706,23 @@
             state.consumed.prot += entry.prot;
             state.consumed.lip += entry.lip;
             state.consumed.gluc += entry.gluc;
-
             foodInput.value = '';
             weightInput.value = '';
             state.selectedFood = null;
             previewEmpty.style.display = '';
             previewContent.style.display = 'none';
-
             saveState();
             updateUI();
             showToast(`✅ ${food.label} ajouté (${Math.round(entry.cal)} kcal)`);
         }
 
-        // ---------- Suggestions ----------
+        // Suggestions
         foodInput.addEventListener('input', function() {
             const query = this.value.toLowerCase().trim();
             state.selectedFood = null;
             updatePreview();
             if (query.length < 2) { hideSuggestions(); return; }
-            const matches = Object.entries(foodDB)
-                .filter(([key, data]) => key.includes(query) || data.label.toLowerCase().includes(query))
-                .slice(0, 6);
+            const matches = Object.entries(foodDB).filter(([key, data]) => key.includes(query) || data.label.toLowerCase().includes(query)).slice(0,6);
             if (matches.length === 0) { hideSuggestions(); return; }
             suggestionsList.innerHTML = '';
             matches.forEach(([key, data]) => {
@@ -798,11 +762,9 @@
         addBtn.addEventListener('click', addFood);
         weightInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); addFood(); } });
 
-        // ---------- Reset ----------
         function resetDay() { if (confirm('Réinitialiser toute la journée ?')) { state.consumed = { cal:0, prot:0, lip:0, gluc:0 }; state.history = []; saveState(); updateUI(); showToast('🔄 Journée réinitialisée'); } }
         document.getElementById('resetDayBtn').addEventListener('click', resetDay);
 
-        // ---------- Modal besoins ----------
         function openModal() {
             document.getElementById('edit-cal').value = state.needs.cal;
             document.getElementById('edit-prot').value = state.needs.prot;
@@ -825,9 +787,7 @@
         document.getElementById('saveNeedsBtn').addEventListener('click', saveNeeds);
         modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 
-        // ---------- Toast ----------
         function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); }
-
         init();
     })();
 </script>
