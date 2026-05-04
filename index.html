@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Suivi Nutritionnel · Dark Edition</title>
-    <!-- Favicon classique + Apple touch icon pour écran d'accueil -->
     <link rel="icon" type="image/jpeg" href="favicon.jpg">
     <link rel="apple-touch-icon" href="favicon.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* ... reste du style identique à la version précédente ... */
-        /* (je n’ai pas changé le style, uniquement ajouté la balise apple-touch-icon) */
-        /* pour éviter la répétition, je réutilise le style exact de ma dernière réponse */
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +20,7 @@
             --border: #2c313c;
             --text: #f0f3f8;
             --text-muted: #8a92a6;
-            --accent: #3b82f6;       /* bleu vif moderne */
+            --accent: #3b82f6;
             --accent-dark: #1e3a8a;
             --green: #22c55e;
             --green-bg: #162b1d;
@@ -56,7 +52,6 @@
             gap: 20px;
         }
 
-        /* Header */
         .app-header {
             text-align: center;
             margin-bottom: 8px;
@@ -98,7 +93,6 @@
             border-color: var(--accent);
         }
 
-        /* Cartes */
         .card {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -145,7 +139,6 @@
             color: white;
         }
 
-        /* Grille nutriments */
         .nutrient-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -172,7 +165,6 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Reste à consommer (couleurs) */
         .remaining .nutrient-box:nth-child(1) { background: var(--green-bg); border-color: #22c55e40; }
         .remaining .nutrient-box:nth-child(1) .nutrient-value { color: #4ade80; }
         .remaining .nutrient-box:nth-child(2) { background: var(--orange-bg); border-color: #f9731640; }
@@ -184,12 +176,15 @@
         .nutrient-box.over { background: #451e1e !important; border-color: #ef4444 !important; }
         .nutrient-box.over .nutrient-value { color: #ff8585 !important; }
 
-        /* Barres verticales (jauges) */
-        .progress-gauge {
+        /* Groupes de jauges : haut (prot, lip, gluc) et bas (calories seule) */
+        .gauge-group {
             display: flex;
-            gap: 24px;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .gauge-group:last-child {
+            margin-bottom: 0;
         }
         .gauge-item {
             flex: 1;
@@ -240,7 +235,6 @@
             font-weight: 500;
         }
 
-        /* Historique */
         .history-list {
             display: flex;
             flex-direction: column;
@@ -284,7 +278,6 @@
             border: 1px dashed var(--border);
         }
 
-        /* Ajout d'aliment */
         .preview-card {
             background: var(--bg);
             border-radius: var(--radius-sm);
@@ -336,7 +329,6 @@
             transform: translateY(-2px);
         }
 
-        /* Suggestions */
         .suggestions { position: relative; }
         .suggestions-list {
             position: absolute;
@@ -361,7 +353,6 @@
         .sug-name { font-weight: 500; }
         .sug-info { font-family: monospace; font-size: 12px; opacity: 0.8; }
 
-        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -449,17 +440,10 @@
         </div>
     </div>
 
-    <!-- Progression avec jauges verticales -->
+    <!-- Jauges : trois nutriments en haut, calories seule en bas -->
     <div class="card">
         <div class="card-header"><span class="card-title">📊 Objectifs (jauges)</span></div>
-        <div class="progress-gauge" id="gauge-container">
-            <!-- Calories -->
-            <div class="gauge-item">
-                <div class="gauge-label"><span>Calories</span></div>
-                <div class="gauge-bar-vertical" style="position:relative"><div class="gauge-fill" id="gauge-cal" style="height:0%; background:linear-gradient(0deg, #22c55e, #4ade80)"></div></div>
-                <div class="gauge-percent" id="gauge-cal-pct">0%</div>
-                <div class="gauge-text" id="gauge-cal-txt">0 / 2000 kcal</div>
-            </div>
+        <div class="gauge-group">
             <!-- Protéines -->
             <div class="gauge-item">
                 <div class="gauge-label"><span>Protéines</span></div>
@@ -480,6 +464,15 @@
                 <div class="gauge-bar-vertical"><div class="gauge-fill fill-gluc" id="gauge-gluc" style="height:0%"></div></div>
                 <div class="gauge-percent" id="gauge-gluc-pct">0%</div>
                 <div class="gauge-text" id="gauge-gluc-txt">0 / 250 g</div>
+            </div>
+        </div>
+        <div class="gauge-group" style="margin-bottom:0;">
+            <!-- Calories seule -->
+            <div class="gauge-item">
+                <div class="gauge-label"><span>Calories</span></div>
+                <div class="gauge-bar-vertical"><div class="gauge-fill" id="gauge-cal" style="height:0%; background:linear-gradient(0deg, #22c55e, #4ade80)"></div></div>
+                <div class="gauge-percent" id="gauge-cal-pct">0%</div>
+                <div class="gauge-text" id="gauge-cal-txt">0 / 2000 kcal</div>
             </div>
         </div>
     </div>
@@ -568,7 +561,6 @@
             selectedFood: null,
         };
 
-        // DOM
         const foodInput = document.getElementById('foodInput');
         const weightInput = document.getElementById('weightInput');
         const suggestionsList = document.getElementById('suggestionsList');
@@ -605,17 +597,16 @@
 
         function updateUI() {
             const { needs, consumed } = state;
-            // besoins
             document.getElementById('need-cal').textContent = needs.cal;
             document.getElementById('need-prot').textContent = needs.prot + 'g';
             document.getElementById('need-lip').textContent = needs.lip + 'g';
             document.getElementById('need-gluc').textContent = needs.gluc + 'g';
-            // cumul
+
             document.getElementById('tot-cal').textContent = Math.round(consumed.cal);
             document.getElementById('tot-prot').textContent = Math.round(consumed.prot) + 'g';
             document.getElementById('tot-lip').textContent = Math.round(consumed.lip) + 'g';
             document.getElementById('tot-gluc').textContent = Math.round(consumed.gluc) + 'g';
-            // reste
+
             const remCal = needs.cal - consumed.cal;
             const remProt = needs.prot - consumed.prot;
             const remLip = needs.lip - consumed.lip;
@@ -624,10 +615,10 @@
             document.getElementById('rem-prot').textContent = Math.round(remProt) + 'g';
             document.getElementById('rem-lip').textContent = Math.round(remLip) + 'g';
             document.getElementById('rem-gluc').textContent = Math.round(remGluc) + 'g';
+
             const remBoxes = document.querySelectorAll('#grid-remaining .nutrient-box');
             [remCal, remProt, remLip, remGluc].forEach((val, i) => remBoxes[i].classList.toggle('over', val < 0));
 
-            // Mise à jour des jauges verticales
             const setGauge = (id, val, max, txtId, pctId, unit) => {
                 let percent = max > 0 ? (val / max) * 100 : 0;
                 percent = Math.min(100, Math.max(0, percent));
@@ -720,7 +711,6 @@
             showToast(`✅ ${food.label} ajouté (${Math.round(entry.cal)} kcal)`);
         }
 
-        // Suggestions
         foodInput.addEventListener('input', function() {
             const query = this.value.toLowerCase().trim();
             state.selectedFood = null;
