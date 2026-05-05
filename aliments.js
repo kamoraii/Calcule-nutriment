@@ -2063,5 +2063,282 @@ const foodDB = {"poulet": {cal:165, prot:31, lip:3.6, gluc:0, label:"Poulet (bla
 "bâtonnets de poisson surgelés": {cal:230, prot:12, lip:11, gluc:20, label:"Bâtonnets de poisson surgelés"},
 "steak haché surgelé": {cal:270, prot:24, lip:18, gluc:0, label:"Steak haché surgelé"},
 "légumes à la provençale surgelés": {cal:50, prot:1.5, lip:2, gluc:6, label:"Légumes à la provençale surgelés"},
-"ratatouille surgelée": {cal:45, prot:1.2, lip:2.5, gluc:4.5, label:"Ratatouille surgelée"}
-}; 
+"ratatouille surgelée": {cal:45, prot:1.2, lip:2.5, gluc:4.5, label:"Ratatouille surgelée"},
+// === PRODUITS ÉPICERIE FRANÇAISE (courants de supermarché) ===
+// Biscuits apéritifs
+"tuc original": {cal:500, prot:6, lip:25, gluc:62, label:"Tuc original (biscuit apéritif)"},
+"tuc sel et poivre": {cal:500, prot:6, lip:25, gluc:62, label:"Tuc sel et poivre"},
+"tuc paprika": {cal:500, prot:6, lip:25, gluc:62, label:"Tuc paprika"},
+"belin craquantes nature": {cal:500, prot:5, lip:27, gluc:60, label:"Belin Craquantes nature"},
+"belin grignotines fromage": {cal:490, prot:6, lip:25, gluc:58, label:"Belin Grignotines fromage"},
+"belin crostilles paprika": {cal:500, prot:5, lip:28, gluc:60, label:"Belin Crostilles paprika"},
+"prince apéritif": {cal:480, prot:6, lip:18, gluc:72, label:"Prince apéritif (Lu)"},
+"crackers nature": {cal:430, prot:10, lip:12, gluc:72, label:"Crackers nature"},
+"crackers au fromage": {cal:450, prot:12, lip:15, gluc:68, label:"Crackers au fromage"},
+"bretzel moelleux": {cal:350, prot:8, lip:2, gluc:75, label:"Bretzel moelleux"},
+"bretzel dur": {cal:380, prot:10, lip:3, gluc:78, label:"Bretzel dur"},
+
+// Fromages à croque-monsieur / tranches
+"emmental en tranches": {cal:382, prot:29, lip:29, gluc:0.5, label:"Emmental en tranches"},
+"cantal en tranches": {cal:350, prot:26, lip:27, gluc:0.5, label:"Cantal en tranches"},
+"fromage à raclette": {cal:350, prot:25, lip:27, gluc:1, label:"Fromage à raclette (tranches)"},
+"gruyère râpé": {cal:413, prot:29, lip:33, gluc:0, label:"Gruyère râpé (sac)"},
+"mozzarella râpée": {cal:300, prot:25, lip:20, gluc:2, label:"Mozzarella râpée (sac)"},
+"fromage pour croque-monsieur": {cal:350, prot:25, lip:27, gluc:1, label:"Fromage pour croque-monsieur"},
+
+// Biscottes
+"biscotte heudebert": {cal:410, prot:10, lip:8, gluc:75, label:"Biscotte Heudebert"},
+"biscotte lu": {cal:410, prot:10, lip:8, gluc:75, label:"Biscotte Lu"},
+"biscotte complet": {cal:400, prot:11, lip:7, gluc:72, label:"Biscotte complète"},
+"biscotte sans sel": {cal:400, prot:10, lip:7, gluc:74, label:"Biscotte sans sel"},
+"biscotte aux céréales": {cal:410, prot:10, lip:8, gluc:73, label:"Biscotte aux céréales"},
+
+// Pains et viennoiseries (manquants)
+"pain de mie complet": {cal:250, prot:10, lip:3.5, gluc:45, label:"Pain de mie complet"},
+"pain de mie pour toast": {cal:265, prot:9, lip:3.2, gluc:49, label:"Pain de mie pour toast"},
+"pain de mie sans croûte": {cal:270, prot:8, lip:3, gluc:50, label:"Pain de mie sans croûte"},
+"pain au lait individuel": {cal:320, prot:8, lip:12, gluc:45, label:"Pain au lait individuel"},
+"brioche ronde": {cal:350, prot:8, lip:15, gluc:45, label:"Brioche ronde"},
+"brioche tressée": {cal:360, prot:8, lip:16, gluc:46, label:"Brioche tressée"},
+
+// Petits-déjeuners (manquants)
+"céréales chocapic": {cal:390, prot:6, lip:4, gluc:82, label:"Chocapic (céréales)"},
+"céréales frosties": {cal:370, prot:4, lip:1, gluc:85, label:"Frosties (céréales sucrées)"},
+"céréales coco pops": {cal:380, prot:5, lip:3, gluc:82, label:"Coco Pops"},
+"céréales miel pops": {cal:380, prot:5, lip:2, gluc:85, label:"Miel Pops"},
+"céréales fantasia": {cal:370, prot:5, lip:1, gluc:85, label:"Fantasia (céréales)"},
+"céréales fitness": {cal:350, prot:10, lip:2, gluc:75, label:"Fitness (céréales)"},
+"céréales special k": {cal:370, prot:13, lip:1.5, gluc:80, label:"Special K"},
+"granola chocolat": {cal:480, prot:8, lip:18, gluc:65, label:"Granola au chocolat"},
+"granola fruits secs": {cal:470, prot:9, lip:16, gluc:68, label:"Granola aux fruits secs"},
+
+// Snacks sucrés (barres)
+"barre grany": {cal:450, prot:7, lip:16, gluc:68, label:"Grany (Lu)"},
+"barre pim's": {cal:420, prot:3, lip:12, gluc:72, label:"Pim's (Lu)"},
+"barre prince": {cal:480, prot:6, lip:18, gluc:72, label:"Prince (Lu)"},
+"barre milka": {cal:530, prot:7, lip:31, gluc:57, label:"Milka (tablette)"},
+"barre kinder délice": {cal:435, prot:5.5, lip:22, gluc:55, label:"Kinder Délice"},
+"barre kinder bueno": {cal:560, prot:9, lip:35, gluc:53, label:"Kinder Bueno"},
+"barre kinder country": {cal:540, prot:8, lip:33, gluc:55, label:"Kinder Country"},
+"biscuit petit beurre": {cal:470, prot:7, lip:14, gluc:78, label:"Petit Beurre (Lu)"},
+"biscuit réserve": {cal:480, prot:6, lip:18, gluc:74, label:"Réserve (Lu)"},
+"biscuit oréo": {cal:480, prot:5, lip:21, gluc:70, label:"Oréo"},
+
+// Beurres et margarines
+"beurre tendre": {cal:717, prot:0.9, lip:81, gluc:0.1, label:"Beurre tendre"},
+"beurre allégé 39%": {cal:350, prot:0.5, lip:39, gluc:0.5, label:"Beurre allégé 39%"},
+"beurre allégé 20%": {cal:180, prot:0.5, lip:20, gluc:0.5, label:"Beurre allégé 20%"},
+"margarine végétale": {cal:720, prot:0.5, lip:80, gluc:0.5, label:"Margarine végétale"},
+"margarine allégée": {cal:350, prot:0.5, lip:35, gluc:0.5, label:"Margarine allégée"},
+
+// Crème fraîche et liquide
+"crème fraîche 30% épaisse": {cal:300, prot:2, lip:30, gluc:3, label:"Crème fraîche 30% épaisse"},
+"crème fraîche 15% allégée": {cal:160, prot:2, lip:15, gluc:4, label:"Crème fraîche 15% allégée"},
+"crème liquide 30%": {cal:300, prot:2, lip:30, gluc:3, label:"Crème liquide 30%"},
+"crème entière liquide": {cal:300, prot:2, lip:30, gluc:3, label:"Crème entière liquide"},
+"crème à fouetter": {cal:300, prot:2, lip:30, gluc:3, label:"Crème à fouetter"},
+
+// Yaourts et desserts lactés
+"yaourt nature en pot": {cal:59, prot:5, lip:2, gluc:5, label:"Yaourt nature en pot"},
+"yaourt vanille": {cal:90, prot:3.5, lip:2.5, gluc:13, label:"Yaourt vanille (100g)"},
+"yaourt fraise": {cal:90, prot:3.5, lip:2.5, gluc:13, label:"Yaourt fraise (100g)"},
+"yaourt abricot": {cal:90, prot:3.5, lip:2.5, gluc:13, label:"Yaourt abricot (100g)"},
+"petit suisse nature": {cal:123, prot:8.8, lip:9, gluc:2.5, label:"Petit-Suisse nature"},
+"petit suisse vanille": {cal:150, prot:7, lip:9, gluc:12, label:"Petit-Suisse vanille"},
+"faisselle nature": {cal:80, prot:6, lip:5, gluc:3, label:"Faisselle nature"},
+"fromage blanc sucré": {cal:110, prot:6, lip:3, gluc:15, label:"Fromage blanc sucré (portion)"},
+
+// Épices et herbes (communes)
+"sel fin de table": {cal:0, prot:0, lip:0, gluc:0, label:"Sel fin de table"},
+"poivre noir moulu": {cal:250, prot:10, lip:3, gluc:64, label:"Poivre noir moulu"},
+"paprika doux": {cal:280, prot:14, lip:13, gluc:50, label:"Paprika doux"},
+"cumin moulu": {cal:370, prot:14, lip:16, gluc:45, label:"Cumin moulu"},
+"cannelle moulue": {cal:250, prot:3.5, lip:1.2, gluc:70, label:"Cannelle moulue"},
+"origan déshydraté": {cal:250, prot:10, lip:5, gluc:50, label:"Origan déshydraté"},
+"thym déshydraté": {cal:250, prot:6, lip:3, gluc:60, label:"Thym déshydraté"},
+"romarin déshydraté": {cal:250, prot:4, lip:5, gluc:60, label:"Romarin déshydraté"},
+"basilic déshydraté": {cal:250, prot:14, lip:4, gluc:42, label:"Basilic déshydraté"},
+"ail en poudre": {cal:340, prot:12, lip:1, gluc:66, label:"Ail en poudre"},
+"oignon en poudre": {cal:350, prot:10, lip:1, gluc:80, label:"Oignon en poudre"},
+"coriandre en poudre": {cal:280, prot:12, lip:10, gluc:45, label:"Coriandre en poudre"},
+"curry en poudre": {cal:320, prot:14, lip:16, gluc:46, label:"Curry en poudre"},
+"piment d'Espelette": {cal:280, prot:10, lip:5, gluc:50, label:"Piment d'Espelette"},
+"grain de moutarde": {cal:120, prot:7, lip:7, gluc:8, label:"Graines de moutarde"},
+"grain de poivre": {cal:250, prot:10, lip:3, gluc:64, label:"Grain de poivre"},
+"sel d'ail": {cal:0, prot:0, lip:0, gluc:0, label:"Sel d'ail"},
+"poivre citron": {cal:250, prot:10, lip:3, gluc:64, label:"Poivre citron"},
+
+// Sirops et confitures
+"confiture fraise extra": {cal:278, prot:0.4, lip:0.1, gluc:69, label:"Confiture fraise extra"},
+"confiture abricot extra": {cal:278, prot:0.4, lip:0.1, gluc:69, label:"Confiture abricot extra"},
+"confiture framboise extra": {cal:278, prot:0.4, lip:0.1, gluc:69, label:"Confiture framboise extra"},
+"confiture allégée 50%": {cal:150, prot:0.4, lip:0.1, gluc:37, label:"Confiture allégée 50%"},
+"miel toutes fleurs": {cal:304, prot:0.3, lip:0, gluc:82, label:"Miel toutes fleurs"},
+"miel d'acacia": {cal:304, prot:0.3, lip:0, gluc:82, label:"Miel d'acacia"},
+"sirop d'érable grade A": {cal:260, prot:0.1, lip:0.1, gluc:67, label:"Sirop d'érable"},
+"sirop d'agave": {cal:310, prot:0.1, lip:0.1, gluc:76, label:"Sirop d'agave"},
+"nutella (pâte à tartiner)": {cal:544, prot:6, lip:31, gluc:58, label:"Nutella"},
+"pâte à tartiner noisettes": {cal:540, prot:6, lip:30, gluc:60, label:"Pâte à tartiner noisettes"},
+
+// Barres de céréales et petit-déjeuner
+"barre céréale chewy": {cal:400, prot:5, lip:12, gluc:70, label:"Barre céréale Chewy"},
+"barre céréale granola": {cal:420, prot:6, lip:14, gluc:66, label:"Barre céréale granola"},
+"barre céréale chocolat": {cal:430, prot:5, lip:15, gluc:65, label:"Barre céréale chocolat"},
+"barre céréale fruits rouges": {cal:410, prot:4, lip:13, gluc:68, label:"Barre céréale fruits rouges"},
+"barre protéinée (soft)": {cal:350, prot:30, lip:15, gluc:30, label:"Barre protéinée soft"},
+"barre protéinée crisp": {cal:340, prot:25, lip:12, gluc:35, label:"Barre protéinée crisp"},// === ÉPICERIE FRANÇAISE DE QUARTIER (dépannage rapide) ===
+
+// Pains et viennoiseries individuelles
+"pain de mie Harrys": {cal:265, prot:9, lip:3.2, gluc:49, label:"Pain de mie Harrys"},
+"pain de mie complet Harrys": {cal:250, prot:10, lip:3.5, gluc:45, label:"Pain de mie complet Harrys"},
+"pain de mie sans croûte": {cal:270, prot:8, lip:3, gluc:50, label:"Pain de mie sans croûte"},
+"pain au lait Pasquier": {cal:320, prot:8, lip:12, gluc:45, label:"Pain au lait Pasquier"},
+"brioche Pasquier": {cal:350, prot:8, lip:15, gluc:45, label:"Brioche Pasquier"},
+"croissant individuel": {cal:380, prot:7, lip:22, gluc:40, label:"Croissant individuel"},
+"pain au chocolat individuel": {cal:400, prot:7, lip:24, gluc:42, label:"Pain au chocolat individuel"},
+
+// Biscottes et craquottes
+"craquotte Heudebert": {cal:380, prot:8, lip:3, gluc:80, label:"Craquotte Heudebert"},
+"craquotte au sésame": {cal:400, prot:9, lip:6, gluc:74, label:"Craquotte au sésame"},
+"tartine craquante": {cal:390, prot:8, lip:4, gluc:78, label:"Tartine craquante"},
+
+// Fromages en tranches (type croque-monsieur)
+"emmenthal en tranches Casino": {cal:382, prot:29, lip:29, gluc:0.5, label:"Emmental en tranches Casino"},
+"cantal en tranches Casino": {cal:350, prot:26, lip:27, gluc:0.5, label:"Cantal en tranches Casino"},
+"cheddar en tranches": {cal:404, prot:24, lip:33.3, gluc:0, label:"Cheddar en tranches"},
+"fromage à raclette Casino": {cal:350, prot:25, lip:27, gluc:1, label:"Fromage à raclette Casino"},
+"fromage pour croque-monsieur (tranches)": {cal:350, prot:25, lip:27, gluc:1, label:"Fromage pour croque-monsieur"},
+
+// Jambon et charcuterie (dépannage)
+"jambon blanc Casino": {cal:145, prot:20, lip:7, gluc:0.5, label:"Jambon blanc Casino"},
+"jambon de poulet Casino": {cal:115, prot:20, lip:3, gluc:1, label:"Jambon de poulet Casino"},
+"jambon fumé Casino": {cal:150, prot:20, lip:7.5, gluc:0.5, label:"Jambon fumé Casino"},
+"blanc de dinde Casino": {cal:110, prot:22, lip:2, gluc:1, label:"Blanc de dinde Casino"},
+"rosette en tranches": {cal:380, prot:25, lip:30, gluc:2, label:"Rosette en tranches"},
+"saucisson sec tranché": {cal:380, prot:25, lip:30, gluc:2, label:"Saucisson sec tranché"},
+"rillettes de porc Saint Alby": {cal:420, prot:16, lip:38, gluc:0.5, label:"Rillettes de porc Saint Alby"},
+
+// Gâteaux individuels (marques courantes)
+"madeleine individuelle": {cal:450, prot:6, lip:22, gluc:58, label:"Madeleine individuelle"},
+"madeleine parfumée": {cal:450, prot:6, lip:22, gluc:58, label:"Madeleine parfumée (citron)"},
+"cake moelleux": {cal:380, prot:5, lip:18, gluc:48, label:"Cake moelleux"},
+"brownie individuel": {cal:470, prot:5, lip:25, gluc:60, label:"Brownie individuel"},
+"couque individuelle": {cal:350, prot:6, lip:14, gluc:50, label:"Couque individuelle"},
+"pain d'épice individuel": {cal:340, prot:3, lip:1, gluc:80, label:"Pain d'épice individuel"},
+
+// Barres chocolatées (snacking)
+"lion barre": {cal:480, prot:5, lip:22, gluc:65, label:"Lion (barre)"},
+"kinder maxi": {cal:520, prot:8, lip:32, gluc:52, label:"Kinder Maxi"},
+"kinder happy hippo": {cal:530, prot:7, lip:34, gluc:51, label:"Kinder Happy Hippo"},
+"milka triple chocolat": {cal:540, prot:7, lip:32, gluc:56, label:"Milka triple chocolat"},
+"cebelia": {cal:540, prot:6, lip:31, gluc:58, label:"Cébélia (chocolat)"},
+
+// Céréales petit-déjeuner (petits paquets)
+"céréales petit déjeuner Nesquik": {cal:380, prot:6, lip:3, gluc:82, label:"Nesquik (céréales)"},
+"céréales Smacks": {cal:370, prot:5, lip:1, gluc:85, label:"Smacks (céréales)"},
+"céréales Trésor": {cal:380, prot:6, lip:3, gluc:82, label:"Trésor (céréales)"},
+"céréales Golden Grahams": {cal:370, prot:5, lip:2, gluc:84, label:"Golden Grahams"},
+"granola en sachet": {cal:471, prot:10, lip:20, gluc:64, label:"Granola (sachet)"},
+"muesli croquant": {cal:400, prot:8, lip:12, gluc:70, label:"Muesli croquant"},
+
+// Biscuit apéritif
+"chips nature Lay's": {cal:536, prot:6.4, lip:34, gluc:51, label:"Chips nature Lay's"},
+"chips paprika Lay's": {cal:530, prot:6, lip:33, gluc:52, label:"Chips paprika Lay's"},
+"chips barbecue Lay's": {cal:530, prot:6, lip:33, gluc:52, label:"Chips barbecue Lay's"},
+"crackers apéritif Belin": {cal:500, prot:6, lip:27, gluc:60, label:"Crackers apéritif Belin"},
+"biscuit apéritif Tortillax": {cal:500, prot:6, lip:28, gluc:60, label:"Tortillax (chips de maïs)"},
+"mélange apéritif (cacahuètes, sticks)": {cal:500, prot:15, lip:30, gluc:45, label:"Mélange apéritif"},
+
+// Plats micro-ondables / conserve
+"raviolis en boîte Casino": {cal:86, prot:2.4, lip:2.2, gluc:13, label:"Raviolis Casino en conserve"},
+"cassoulet en boîte Casino": {cal:136, prot:8.6, lip:6.8, gluc:8.4, label:"Cassoulet Casino en conserve"},
+"petit salé aux lentilles Casino": {cal:120, prot:8, lip:6, gluc:8, label:"Petit salé aux lentilles Casino"},
+"chili con carne Casino": {cal:114, prot:9.3, lip:3.3, gluc:11.9, label:"Chili con carne Casino"},
+"macédoine de légumes Casino": {cal:50, prot:2, lip:0.5, gluc:9, label:"Macédoine de légumes Casino"},
+"ratatouille Casino": {cal:45, prot:1.2, lip:2.5, gluc:4.5, label:"Ratatouille Casino"},
+"lentilles cuisinées Casino": {cal:116, prot:9, lip:0.4, gluc:20, label:"Lentilles cuisinées Casino"},
+"pois chiches Casino": {cal:139, prot:7, lip:2.6, gluc:20, label:"Pois chiches Casino"},
+"haricots blancs Casino": {cal:140, prot:8.7, lip:0.5, gluc:25, label:"Haricots blancs Casino"},
+
+// Œufs et lait
+"oeufs frais (boîte de 6)": {cal:155, prot:13, lip:11, gluc:1.1, label:"Œufs frais (par œuf)"},
+"oeufs bio (boîte de 6)": {cal:155, prot:13, lip:11, gluc:1.1, label:"Œufs bio (par œuf)"},
+"lait demi-écrémé bouteille": {cal:46, prot:3.2, lip:1.6, gluc:4.8, label:"Lait demi-écrémé (bouteille)"},
+"lait entier bouteille": {cal:61, prot:3.2, lip:3.3, gluc:4.8, label:"Lait entier (bouteille)"},
+"lait écrémé bouteille": {cal:34, prot:3.3, lip:0.1, gluc:5, label:"Lait écrémé (bouteille)"},
+"lait sans lactose bouteille": {cal:46, prot:3.2, lip:1.6, gluc:4.8, label:"Lait sans lactose"},
+
+// Beurre et margarine
+"beurre doux plaquette": {cal:717, prot:0.9, lip:81, gluc:0.1, label:"Beurre doux plaquette"},
+"beurre demi-sel plaquette": {cal:717, prot:0.9, lip:81, gluc:0.1, label:"Beurre demi-sel plaquette"},
+"margarine végétale plaquette": {cal:720, prot:0.5, lip:80, gluc:0.5, label:"Margarine végétale plaquette"},
+
+// Fromage type "kiri", "vache qui rit"
+"kiri (portion)": {cal:290, prot:8, lip:27, gluc:3, label:"Kiri (portion)"},
+"vache qui rit (portion)": {cal:280, prot:10, lip:25, gluc:3, label:"Vache qui rit (portion)"},
+"fromage à tartiner nature": {cal:250, prot:6, lip:23, gluc:4, label:"Fromage à tartiner nature"},
+
+// Desserts lactés
+"crème caramel individuelle": {cal:120, prot:3, lip:4, gluc:18, label:"Crème caramel individuelle"},
+"flan pâtissier individuel": {cal:210, prot:5, lip:7, gluc:32, label:"Flan pâtissier individuel"},
+"île flottante individuelle": {cal:130, prot:4, lip:6, gluc:14, label:"Île flottante individuelle"},
+"mousse au chocolat individuelle": {cal:230, prot:5, lip:15, gluc:20, label:"Mousse au chocolat individuelle"},
+"yaourt aux fruits (pot)": {cal:90, prot:3.5, lip:2.5, gluc:13, label:"Yaourt aux fruits (pot)"},
+"yaourt à boire": {cal:70, prot:2.5, lip:2, gluc:10, label:"Yaourt à boire"},
+
+// Boissons fraîches
+"coca cola canette 33cl": {cal:42, prot:0, lip:0, gluc:10.6, label:"Coca-Cola canette 33cl"},
+"coca light canette": {cal:0.3, prot:0, lip:0, gluc:0, label:"Coca Light canette"},
+"fanta orange canette": {cal:45, prot:0, lip:0, gluc:12, label:"Fanta Orange canette"},
+"orangina canette": {cal:47, prot:0, lip:0, gluc:11, label:"Orangina canette"},
+"ice tea pêche bouteille": {cal:30, prot:0, lip:0, gluc:8, label:"Ice Tea pêche bouteille"},
+"eau minérale gazeuse bouteille": {cal:0, prot:0, lip:0, gluc:0, label:"Eau minérale gazeuse"},
+"eau plate bouteille Cristaline": {cal:0, prot:0, lip:0, gluc:0, label:"Eau plate Cristaline"},
+"jus d'orange pur jus carton": {cal:45, prot:0.7, lip:0.2, gluc:10, label:"Jus d'orange pur jus"},
+"jus multifruits carton": {cal:50, prot:0.3, lip:0.1, gluc:12, label:"Jus multifruits"},
+
+// Compotes
+"compote pomme sans sucre (gourde)": {cal:50, prot:0.2, lip:0.1, gluc:12, label:"Compote pomme sans sucre gourde"},
+"compote pomme banane gourde": {cal:55, prot:0.3, lip:0.1, gluc:13, label:"Compote pomme banane gourde"},
+"compote pomme fraise gourde": {cal:55, prot:0.3, lip:0.1, gluc:13, label:"Compote pomme fraise gourde"},
+"compote pomme en pot": {cal:80, prot:0.3, lip:0.2, gluc:19, label:"Compote pomme en pot"},
+
+// Bonbons et chewing-gum
+"bonbons haribo (fraise tagada)": {cal:320, prot:4, lip:0, gluc:80, label:"Haribo Fraise Tagada"},
+"bonbons haribo (dragibus)": {cal:320, prot:4, lip:0, gluc:80, label:"Haribo Dragibus"},
+"bonbons haribo (ours d'or)": {cal:320, prot:4, lip:0, gluc:80, label:"Haribo Ours d'Or"},
+"bonbons mentos": {cal:350, prot:0, lip:1, gluc:85, label:"Mentos (bonbon)"},
+"chewing gum sans sucre": {cal:180, prot:0, lip:0, gluc:65, label:"Chewing-gum sans sucre"},
+
+// Café, thés
+"café lyophilisé en bocal": {cal:1, prot:0.1, lip:0, gluc:0, label:"Café lyophilisé"},
+"café moulu expresso": {cal:1, prot:0.1, lip:0, gluc:0, label:"Café moulu expresso"},
+"thé noir en sachet": {cal:1, prot:0, lip:0, gluc:0, label:"Thé noir en sachet"},
+"thé vert en sachet (menthe)": {cal:1, prot:0, lip:0, gluc:0, label:"Thé vert menthe"},
+"infusion camomille sachet": {cal:1, prot:0, lip:0, gluc:0, label:"Infusion camomille"},
+
+// Chips et snacks salés (marques)
+"lays barbecue": {cal:530, prot:6, lip:33, gluc:52, label:"Lay's barbecue"},
+"lays sel et vinaigre": {cal:530, prot:6, lip:33, gluc:52, label:"Lay's sel et vinaigre"},
+"lays paprika": {cal:530, prot:6, lip:33, gluc:52, label:"Lay's paprika"},
+"pringles sour cream": {cal:536, prot:4.6, lip:33, gluc:53, label:"Pringles sour cream"},
+"pringles original": {cal:536, prot:4.6, lip:33, gluc:53, label:"Pringles original"},
+"tortilla chips nature": {cal:500, prot:6, lip:28, gluc:58, label:"Tortilla chips nature"},
+"tortilla chips fromage": {cal:510, prot:7, lip:29, gluc:56, label:"Tortilla chips fromage"},
+"cacahuètes grillées salées en sachet": {cal:567, prot:26, lip:49, gluc:16, label:"Cacahuètes grillées salées sachet"},
+"mélange de noix sachet": {cal:600, prot:15, lip:50, gluc:20, label:"Mélange de noix sachet"},
+"pistaches en coque": {cal:557, prot:20, lip:45, gluc:28, label:"Pistaches en coque"},
+"amandes grillées salées": {cal:590, prot:21, lip:50, gluc:20, label:"Amandes grillées salées"},
+
+// Exemples de marques précises (Tuc, Belin, etc.)
+"tuc original (sachet)": {cal:500, prot:6, lip:25, gluc:62, label:"Tuc original (sachet)"},
+"belin craquantes nature (sachet)": {cal:500, prot:5, lip:27, gluc:60, label:"Belin craquantes nature (sachet)"},
+"prince apéritif (sachet)": {cal:480, prot:6, lip:18, gluc:72, label:"Prince apéritif (sachet)"},
+"crackers belin (sachet)": {cal:500, prot:6, lip:27, gluc:60, label:"Crackers Belin (sachet)"},
+"bretzel moelleux (sachet)": {cal:350, prot:8, lip:2, gluc:75, label:"Bretzel moelleux (sachet)"},
+"bretzel dur (sachet)": {cal:380, prot:10, lip:3, gluc:78, label:"Bretzel dur (sachet)"},
+"gâteaux apéritif grignotines": {cal:490, prot:6, lip:25, gluc:58, label:"Grignotines (Belin)"},
+"chips couronne nature": {cal:536, prot:6.4, lip:34, gluc:51, label:"Chips couronne nature"},
+"chips couronne paprika": {cal:530, prot:6, lip:33, gluc:52, label:"Chips couronne paprika"},
+"chips vico sel": {cal:536, prot:6.4, lip:34, gluc:51, label:"Chips Vico sel régal"},
+"chips vico paprika": {cal:530, prot:6, lip:33, gluc:52, label:"Chips Vico paprika"},
