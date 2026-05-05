@@ -2451,7 +2451,7 @@ const foodDB = {"poulet": {cal:165, prot:31, lip:3.6, gluc:0, label:"Poulet (bla
 "st moret (fromage frais)": {cal:130, prot:7, lip:10, gluc:2, label:"St Moret (fromage frais)"},
 "st moret ail et fines herbes": {cal:130, prot:7, lip:10, gluc:2, label:"St Moret ail et fines herbes"},
 "tartare (fromage frais)": {cal:130, prot:7, lip:10, gluc:2, label:"Tartare (fromage frais)"},
-"boursin ail et fines herbes": {cal:320, prot:7, lip:33, gluc:1, label:"Boursin ail et fines herbes"},...
+"boursin ail et fines herbes": {cal:320, prot:7, lip:33, gluc:1, label:"Boursin ail et fines herbes"},
 "boursin cuisine": {cal:320, prot:6, lip:33, gluc:2, label:"Boursin cuisine"},
 "cheez whiz": {cal:280, prot:8, lip:22, gluc:10, label:"Cheez Whiz (fromage à tartiner)"}
 };
