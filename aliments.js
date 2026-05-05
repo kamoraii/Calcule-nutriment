@@ -2341,4 +2341,117 @@ const foodDB = {"poulet": {cal:165, prot:31, lip:3.6, gluc:0, label:"Poulet (bla
 "chips couronne nature": {cal:536, prot:6.4, lip:34, gluc:51, label:"Chips couronne nature"},
 "chips couronne paprika": {cal:530, prot:6, lip:33, gluc:52, label:"Chips couronne paprika"},
 "chips vico sel": {cal:536, prot:6.4, lip:34, gluc:51, label:"Chips Vico sel régal"},
-"chips vico paprika": {cal:530, prot:6, lip:33, gluc:52, label:"Chips Vico paprika"},
+"chips vico paprika": {cal:530, prot:6, lip:33, gluc:52, label:"Chips Vico paprika"},// === CHARCUTERIE ÉCONOMIQUE ET PLATS SIMPLES (épicerie française) ===
+
+// Mortadelle
+"mortadelle fleur de lys": {cal:320, prot:16, lip:27, gluc:2, label:"Mortadelle Fleur de Lys"},
+"mortadelle en tranches": {cal:320, prot:16, lip:27, gluc:2, label:"Mortadelle (tranches)"},
+"mortadelle au pistache": {cal:330, prot:16, lip:28, gluc:2, label:"Mortadelle au pistache"},
+
+// Saucisses à hot-dog / knacki
+"saucisse knacki": {cal:320, prot:15, lip:28, gluc:2, label:"Saucisse Knacki (Herta)"},
+"saucisse hot-dog": {cal:320, prot:15, lip:28, gluc:2, label:"Saucisse hot-dog"},
+"saucisse de Francfort Herta": {cal:310, prot:15, lip:27, gluc:2, label:"Saucisse Francfort Herta"},
+"saucisse de Strasbourg Herta": {cal:320, prot:15, lip:28, gluc:2, label:"Saucisse Strasbourg Herta"},
+"saucisse knacki poulet": {cal:280, prot:16, lip:23, gluc:1.5, label:"Saucisse Knacki poulet"},
+
+// Saucisses fumées et de Toulouse
+"saucisse fumée de porc": {cal:320, prot:15, lip:28, gluc:2, label:"Saucisse fumée de porc (nature)"},
+"saucisse de Toulouse nature": {cal:330, prot:16, lip:29, gluc:1, label:"Saucisse de Toulouse nature"},
+"saucisse de Toulouse au couteau": {cal:340, prot:16, lip:30, gluc:1, label:"Saucisse de Toulouse au couteau"},
+"saucisse de Morteau": {cal:320, prot:18, lip:27, gluc:1, label:"Saucisse de Morteau (fumée)"},
+"saucisse de Montbéliard": {cal:330, prot:19, lip:28, gluc:1, label:"Saucisse de Montbéliard"},
+"chipolata": {cal:310, prot:15, lip:27, gluc:2, label:"Chipolata (saucisse fraîche)"},
+"saucisse cocktail": {cal:350, prot:14, lip:32, gluc:2, label:"Saucisse cocktail (apéritif)"},
+
+// Jambons économiques
+"jambon blanc premier prix": {cal:145, prot:20, lip:7, gluc:0.5, label:"Jambon blanc premier prix"},
+"jambon supérieur sans couenne": {cal:145, prot:21, lip:6.5, gluc:0.5, label:"Jambon blanc supérieur sans couenne"},
+"jambon de Paris": {cal:145, prot:20, lip:7, gluc:0.5, label:"Jambon de Paris"},
+"jambon à la coupe": {cal:145, prot:20, lip:7, gluc:0.5, label:"Jambon à la coupe"},
+"jambon fumé premier prix": {cal:150, prot:20, lip:7.5, gluc:0.5, label:"Jambon fumé premier prix"},
+"jambon de volaille": {cal:115, prot:20, lip:3, gluc:1, label:"Jambon de volaille"},
+"jambon de poulet premier prix": {cal:115, prot:20, lip:3, gluc:1, label:"Jambon de poulet premier prix"},
+
+// Pâtés et rillettes
+"pâté de campagne Hénaff": {cal:360, prot:15, lip:32, gluc:2, label:"Pâté de campagne Hénaff"},
+"pâté de foie premier prix": {cal:380, prot:14, lip:35, gluc:2, label:"Pâté de foie premier prix"},
+"pâté de campagne en boîte": {cal:360, prot:15, lip:32, gluc:2, label:"Pâté de campagne en boîte"},
+"pâté de canard": {cal:380, prot:14, lip:35, gluc:2, label:"Pâté de canard"},
+"rillettes du Mans": {cal:420, prot:16, lip:38, gluc:0.5, label:"Rillettes du Mans"},
+"rillettes de poulet": {cal:380, prot:18, lip:34, gluc:1, label:"Rillettes de poulet"},
+"rillettes de maquereau": {cal:380, prot:14, lip:35, gluc:1, label:"Rillettes de maquereau"},
+"cassoulet de charcutier en boîte": {cal:136, prot:8.6, lip:6.8, gluc:8.4, label:"Cassoulet de charcutier en boîte"},
+
+// Produits apéritifs (saucisson, etc.)
+"saucisson sec aux noix": {cal:390, prot:24, lip:31, gluc:2, label:"Saucisson sec aux noix"},
+"saucisson sec nature (tranches)": {cal:380, prot:25, lip:30, gluc:2, label:"Saucisson sec nature (tranches)"},
+"saucisson à l'ail (tranches)": {cal:380, prot:25, lip:30, gluc:2, label:"Saucisson à l'ail (tranches)"},
+"rosette de Lyon (tranches)": {cal:380, prot:25, lip:30, gluc:2, label:"Rosette de Lyon (tranches)"},
+"coppa en tranches": {cal:350, prot:25, lip:27, gluc:1, label:"Coppa en tranches"},
+"bresaola en tranches": {cal:200, prot:33, lip:6, gluc:1, label:"Bresaola en tranches"},
+"jambon serrano en tranches": {cal:220, prot:28, lip:12, gluc:0, label:"Jambon Serrano en tranches"},
+"jambon ibérique en tranches": {cal:230, prot:29, lip:13, gluc:0, label:"Jambon ibérique en tranches"},
+
+// Plats simples en conserve ou micro-ondables
+"taboulé frais (maison)": {cal:130, prot:3, lip:5, gluc:18, label:"Taboulé frais (salade)"},
+"taboulé marque repère": {cal:130, prot:3, lip:5, gluc:18, label:"Taboulé marque repère (100g)"},
+"salade de riz (traiteur)": {cal:160, prot:4, lip:7, gluc:20, label:"Salade de riz (traiteur)"},
+"salade piémontaise (traiteur)": {cal:149, prot:3.7, lip:11, gluc:7.9, label:"Salade piémontaise (traiteur)"},
+"salade césar (traiteur)": {cal:160, prot:6, lip:12, gluc:5, label:"Salade césar (traiteur)"},
+"salade de pâtes (traiteur)": {cal:180, prot:5, lip:8, gluc:22, label:"Salade de pâtes (traiteur)"},
+"quiche lorraine (portion)": {cal:320, prot:10, lip:24, gluc:18, label:"Quiche lorraine (portion)"},
+"croque-monsieur (préparé)": {cal:351, prot:16, lip:19, gluc:27, label:"Croque-monsieur (plat)"},
+"croque-madame (préparé)": {cal:370, prot:18, lip:21, gluc:26, label:"Croque-madame (plat)"},
+"panini poulet fromage (préparé)": {cal:280, prot:13, lip:10, gluc:30, label:"Panini poulet fromage"},
+
+// Plats réchauffables
+"havane de poulet (plat)": {cal:190, prot:18, lip:10, gluc:6, label:"Havane de poulet"},
+"havane de dinde": {cal:180, prot:18, lip:9, gluc:6, label:"Havane de dinde"},
+"cordon bleu (plat préparé)": {cal:250, prot:14, lip:15, gluc:16, label:"Cordon bleu préparé"},
+"fish and chips surgelé": {cal:288, prot:12, lip:15, gluc:26, label:"Fish and chips (plat)"},
+"nuggets de poulet surgelés": {cal:302, prot:14, lip:19, gluc:18, label:"Nuggets de poulet surgelés"},
+"steak haché surgelé (plat)": {cal:270, prot:24, lip:18, gluc:0, label:"Steak haché surgelé (portion)"},
+"poisson pané surgelé (portion)": {cal:230, prot:13, lip:11, gluc:20, label:"Poisson pané surgelé (portion)"},
+
+// Légumes en conserve / surgelés simples
+"petits pois très fins (conserve)": {cal:70, prot:4, lip:0.5, gluc:10, label:"Petits pois très fins (conserve)"},
+"haricots verts extra fins (conserve)": {cal:35, prot:2, lip:0.1, gluc:7.9, label:"Haricots verts extra fins (conserve)"},
+"flageolets extra fins (conserve)": {cal:87, prot:5.5, lip:0.7, gluc:12, label:"Flageolets extra fins (conserve)"},
+"lentilles cuisinées (conserve)": {cal:116, prot:9, lip:0.4, gluc:20, label:"Lentilles cuisinées (conserve)"},
+"ratatouille (conserve)": {cal:45, prot:1.2, lip:2.5, gluc:4.5, label:"Ratatouille (conserve)"},
+"macédoine de légumes (conserve)": {cal:50, prot:2, lip:0.5, gluc:9, label:"Macédoine de légumes (conserve)"},
+"maïs doux (conserve)": {cal:96, prot:3.2, lip:1.5, gluc:19, label:"Maïs doux (conserve)"},
+"champignons de Paris en lamelles (conserve)": {cal:22, prot:3.1, lip:0.3, gluc:3.3, label:"Champignons de Paris (conserve)"},
+"tomates pelées (conserve)": {cal:20, prot:1, lip:0.2, gluc:3.5, label:"Tomates pelées (conserve)"},
+
+// Fruits en conserve
+"pêches au sirop (conserve)": {cal:70, prot:0.5, lip:0.1, gluc:18, label:"Pêches au sirop (conserve)"},
+"abricots au sirop (conserve)": {cal:65, prot:0.6, lip:0.2, gluc:17, label:"Abricots au sirop (conserve)"},
+"ananas au sirop (conserve)": {cal:70, prot:0.5, lip:0.1, gluc:18, label:"Ananas au sirop (conserve)"},
+"compote de pommes (conserve)": {cal:80, prot:0.3, lip:0.2, gluc:19, label:"Compote de pommes (conserve)"},
+
+// Pâtes, riz, semoule
+"pâtes coquillettes (500g)": {cal:131, prot:5, lip:1, gluc:25, label:"Coquillettes (pâtes)"},
+"pâtes spaghetti (500g)": {cal:131, prot:5, lip:1, gluc:25, label:"Spaghetti (pâtes)"},
+"riz long grain (sachet)": {cal:130, prot:2.7, lip:0.3, gluc:28, label:"Riz long grain"},
+"riz basmati (sachet)": {cal:121, prot:2.4, lip:0.4, gluc:26, label:"Riz basmati cuit"},
+"semoule fine (couscous)": {cal:112, prot:3.5, lip:0.2, gluc:24, label:"Semoule fine (couscous)"},
+"boulgour (sachet)": {cal:83, prot:3, lip:0.2, gluc:18, label:"Boulgour cuit"},
+"quinoa (sachet)": {cal:120, prot:4.4, lip:1.9, gluc:21, label:"Quinoa cuit"},
+
+// Oeufs et lait
+"oeufs de poule élevées en plein air": {cal:155, prot:13, lip:11, gluc:1.1, label:"Œufs plein air (par œuf)"},
+"oeufs label rouge": {cal:155, prot:13, lip:11, gluc:1.1, label:"Œufs label rouge"},
+"lait demi-écrémé (briquette 1L)": {cal:46, prot:3.2, lip:1.6, gluc:4.8, label:"Lait demi-écrémé (1L)"},
+"lait entier (briquette 1L)": {cal:61, prot:3.2, lip:3.3, gluc:4.8, label:"Lait entier (1L)"},
+"lait écrémé (briquette 1L)": {cal:34, prot:3.3, lip:0.1, gluc:5, label:"Lait écrémé (1L)"},
+
+// Fromage frais / portion
+"st moret (fromage frais)": {cal:130, prot:7, lip:10, gluc:2, label:"St Moret (fromage frais)"},
+"st moret ail et fines herbes": {cal:130, prot:7, lip:10, gluc:2, label:"St Moret ail et fines herbes"},
+"tartare (fromage frais)": {cal:130, prot:7, lip:10, gluc:2, label:"Tartare (fromage frais)"},
+"boursin ail et fines herbes": {cal:320, prot:7, lip:33, gluc:1, label:"Boursin ail et fines herbes"},...
+"boursin cuisine": {cal:320, prot:6, lip:33, gluc:2, label:"Boursin cuisine"},
+"cheez whiz": {cal:280, prot:8, lip:22, gluc:10, label:"Cheez Whiz (fromage à tartiner)"}
+};
