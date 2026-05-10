@@ -2,95 +2,436 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Suivi Nutritionnel · Dark Edition</title>
-    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>Suivi Nutritionnel · Édition claire</title>
+    <!-- Manifest et métas pour PWA iOS -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NutriSuivi">
     <link rel="apple-touch-icon" href="favicon.jpg">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* ===== STYLE IDENTIQUE À LA VERSION JAUGE CALORIES SÉPARÉE ===== */
-        /* Je ne le recopie pas ici pour ne pas alourdir, mais il est dans la réponse finale */
-        /* (le style est le même que dans le dernier message avec jauges verticales) */
-        * { margin:0; padding:0; box-sizing: border-box; }
-        :root { --bg:#0f1117; --card-bg:#181c24; --border:#2c313c; --text:#f0f3f8; --text-muted:#8a92a6; --accent:#3b82f6; --accent-dark:#1e3a8a; --green:#22c55e; --green-bg:#162b1d; --orange:#f97316; --orange-bg:#2e2215; --red:#ef4444; --red-bg:#2c1a1a; --blue:#3b82f6; --blue-bg:#18233a; --radius:20px; --radius-sm:14px; --shadow:0 8px 20px rgba(0,0,0,0.4); --transition:all 0.2s ease; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 24px 16px; line-height: 1.5; }
-        .container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
-        .app-header { text-align: center; margin-bottom: 8px; position: relative; }
-        .app-header h1 { font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #fff, #60a5fa); background-clip: text; -webkit-background-clip: text; color: transparent; letter-spacing: -0.5px; }
-        .app-header .date { font-size: 14px; font-weight: 500; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; margin-top: 6px; }
-        .help-link { position: absolute; right: 0; top: 8px; background: var(--card-bg); padding: 6px 12px; border-radius: 40px; font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; border: 1px solid var(--border); transition: var(--transition); }
-        .help-link:hover { background: var(--accent); color: white; border-color: var(--accent); }
-        .card { background: var(--card-bg); border-radius: var(--radius); padding: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--transition); }
-        .card:hover { border-color: var(--accent); }
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .card-title { font-size: 16px; font-weight: 600; background: rgba(59,130,246,0.15); padding: 5px 14px; border-radius: 40px; letter-spacing: -0.2px; }
-        .btn-group { display: flex; gap: 8px; }
-        .btn-small { background: var(--bg); border: 1px solid var(--border); padding: 6px 14px; border-radius: 30px; font-size: 12px; font-weight: 500; color: var(--text); cursor: pointer; transition: var(--transition); }
-        .btn-small:hover { background: var(--accent); border-color: var(--accent); color: white; }
-        .nutrient-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-        .nutrient-box { background: var(--bg); border-radius: var(--radius-sm); padding: 12px 6px; text-align: center; border: 1px solid var(--border); }
-        .nutrient-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
-        .nutrient-value { font-size: 18px; font-weight: 700; margin-top: 6px; font-family: 'JetBrains Mono', monospace; }
-        .remaining .nutrient-box:nth-child(1) { background: var(--green-bg); border-color: #22c55e40; }
-        .remaining .nutrient-box:nth-child(1) .nutrient-value { color: #4ade80; }
-        .remaining .nutrient-box:nth-child(2) { background: var(--orange-bg); border-color: #f9731640; }
-        .remaining .nutrient-box:nth-child(2) .nutrient-value { color: #fb923c; }
-        .remaining .nutrient-box:nth-child(3) { background: var(--blue-bg); border-color: #3b82f640; }
-        .remaining .nutrient-box:nth-child(3) .nutrient-value { color: #60a5fa; }
-        .remaining .nutrient-box:nth-child(4) { background: var(--red-bg); border-color: #ef444440; }
-        .remaining .nutrient-box:nth-child(4) .nutrient-value { color: #f87171; }
-        .nutrient-box.over { background: #451e1e !important; border-color: #ef4444 !important; }
-        .nutrient-box.over .nutrient-value { color: #ff8585 !important; }
-        .gauge-group { display: flex; justify-content: space-around; gap: 16px; margin-bottom: 24px; }
-        .gauge-group:last-child { margin-bottom: 0; }
-        .gauge-item { flex: 1; text-align: center; background: var(--bg); border-radius: var(--radius-sm); padding: 12px 8px; border: 1px solid var(--border); }
-        .gauge-label { font-size: 13px; font-weight: 600; margin-bottom: 12px; display: block; }
-        .gauge-bar-vertical { width: 24px; height: 120px; background: #2a2f3c; border-radius: 40px; margin: 0 auto 12px auto; position: relative; overflow: hidden; }
-        .gauge-fill { position: absolute; bottom: 0; left: 0; width: 100%; transition: height 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); border-radius: 40px; }
-        .gauge-fill.fill-prot { background: linear-gradient(0deg, #f97316, #fbbf24); }
-        .gauge-fill.fill-lip { background: linear-gradient(0deg, #3b82f6, #60a5fa); }
-        .gauge-fill.fill-gluc { background: linear-gradient(0deg, #ef4444, #f87171); }
-        .gauge-fill.fill-over { background: #e11d48; }
-        .gauge-percent { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--text-muted); }
-        .gauge-text { font-size: 12px; margin-top: 8px; color: var(--text); font-weight: 500; }
-        .history-list { display: flex; flex-direction: column; gap: 10px; max-height: 260px; overflow-y: auto; }
-        .history-item { display: flex; justify-content: space-between; align-items: center; background: var(--bg); border-radius: var(--radius-sm); padding: 12px; border: 1px solid var(--border); transition: var(--transition); }
-        .history-item:hover { border-color: var(--accent); background: #1e2430; }
+        /* ========== THÈME CLAIR (beige) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #faf6f0;           /* beige clair */
+            --card-bg: #ffffff;
+            --border: #e2ddd0;
+            --text: #2c2b28;
+            --text-muted: #7f7c76;
+            --accent: #8b5a2b;        /* marron chaud */
+            --accent-dark: #5a3a1a;
+            --green: #2b6e3c;
+            --green-bg: #eaf7e6;
+            --orange: #c97e0a;
+            --orange-bg: #fff0e0;
+            --red: #b3422a;
+            --red-bg: #fde7e3;
+            --blue: #3b6e8f;
+            --blue-bg: #e3f0f5;
+            --radius: 20px;
+            --radius-sm: 14px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+            --transition: all 0.2s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 24px 16px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .app-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-dark);
+            letter-spacing: -0.5px;
+        }
+        .app-header .date {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 6px;
+        }
+        .help-link {
+            position: absolute;
+            right: 0;
+            top: 8px;
+            background: var(--card-bg);
+            padding: 6px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .help-link:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            background: rgba(139,90,43,0.1);
+            padding: 5px 14px;
+            border-radius: 40px;
+            letter-spacing: -0.2px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-small {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-small:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .nutrient-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .nutrient-box {
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            padding: 12px 6px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .nutrient-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+        .nutrient-value {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Reste à consommer (couleurs adaptées) */
+        .remaining .nutrient-box:nth-child(1) { background: var(--green-bg); border-color: #b8e0c2; }
+        .remaining .nutrient-box:nth-child(1) .nutrient-value { color: var(--green); }
+        .remaining .nutrient-box:nth-child(2) { background: var(--orange-bg); border-color: #ffddb0; }
+        .remaining .nutrient-box:nth-child(2) .nutrient-value { color: var(--orange); }
+        .remaining .nutrient-box:nth-child(3) { background: var(--blue-bg); border-color: #cde5f0; }
+        .remaining .nutrient-box:nth-child(3) .nutrient-value { color: var(--blue); }
+        .remaining .nutrient-box:nth-child(4) { background: var(--red-bg); border-color: #f4cdc4; }
+        .remaining .nutrient-box:nth-child(4) .nutrient-value { color: var(--red); }
+        .nutrient-box.over { background: var(--red-bg) !important; border-color: var(--red) !important; }
+        .nutrient-box.over .nutrient-value { color: var(--red) !important; }
+
+        /* Jauges verticales */
+        .gauge-group {
+            display: flex;
+            justify-content: space-around;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .gauge-group:last-child {
+            margin-bottom: 0;
+        }
+        .gauge-item {
+            flex: 1;
+            text-align: center;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            padding: 12px 8px;
+            border: 1px solid var(--border);
+        }
+        .gauge-label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .gauge-bar-vertical {
+            width: 24px;
+            height: 120px;
+            background: #e2ddd0;
+            border-radius: 40px;
+            margin: 0 auto 12px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .gauge-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transition: height 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border-radius: 40px;
+        }
+        .gauge-fill.fill-prot { background: linear-gradient(0deg, var(--orange), #ffb347); }
+        .gauge-fill.fill-lip { background: linear-gradient(0deg, var(--blue), #7fa9c4); }
+        .gauge-fill.fill-gluc { background: linear-gradient(0deg, var(--red), #e67e64); }
+        .gauge-fill.fill-over { background: #c0392b; }
+        .gauge-percent {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        .gauge-text {
+            font-size: 12px;
+            margin-top: 8px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Historique */
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .history-item:hover {
+            border-color: var(--accent);
+            background: white;
+        }
         .history-name { font-weight: 600; font-size: 14px; }
         .history-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
         .history-cals { font-family: monospace; font-weight: 600; color: var(--accent); }
-        .history-delete { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; padding: 0 6px; transition: var(--transition); }
+        .history-delete {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 6px;
+            transition: var(--transition);
+        }
         .history-delete:hover { color: var(--red); transform: scale(1.1); }
-        .empty-state { text-align: center; padding: 32px; color: var(--text-muted); background: var(--bg); border-radius: var(--radius-sm); border: 1px dashed var(--border); }
-        .preview-card { background: var(--bg); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 20px; border: 1px solid var(--border); }
-        .preview-title { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .empty-state {
+            text-align: center;
+            padding: 32px;
+            color: var(--text-muted);
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border);
+        }
+
+        /* Ajout aliment */
+        .preview-card {
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+        .preview-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
         .preview-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
         .preview-weight { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
         .preview-empty { font-style: italic; color: var(--text-muted); }
-        .input-field { width: 100%; padding: 14px; background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 15px; color: var(--text); transition: var(--transition); }
-        .input-field:focus { border-color: var(--accent); outline: none; background: #10131c; }
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            color: var(--text);
+            transition: var(--transition);
+        }
+        .input-field:focus {
+            border-color: var(--accent);
+            outline: none;
+            background: #fffef8;
+        }
         .input-row { margin-top: 8px; }
-        .btn-add { width: 100%; padding: 14px; background: var(--accent); color: white; border: none; border-radius: var(--radius-sm); font-weight: 600; margin-top: 16px; cursor: pointer; transition: var(--transition); }
-        .btn-add:hover { background: var(--accent-dark); transform: translateY(-2px); }
+        .btn-add {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            margin-top: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-add:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Suggestions */
         .suggestions { position: relative; }
-        .suggestions-list { position: absolute; top: calc(100% - 4px); left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); z-index: 100; max-height: 240px; overflow-y: auto; }
-        .suggestion-item { padding: 12px; cursor: pointer; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); }
-        .suggestion-item:hover { background: var(--accent); color: white; }
+        .suggestions-list {
+            position: absolute;
+            top: calc(100% - 4px);
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            z-index: 100;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+        .suggestion-item {
+            padding: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+        .suggestion-item:hover { background: var(--bg); color: var(--accent); }
         .sug-name { font-weight: 500; }
         .sug-info { font-family: monospace; font-size: 12px; opacity: 0.8; }
-        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; z-index: 200; padding: 20px; }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(2px);
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            padding: 20px;
+        }
         .modal-overlay.open { display: flex; }
-        .modal { background: var(--card-bg); border-radius: var(--radius); padding: 24px; width: 100%; max-width: 360px; border: 1px solid var(--border); }
+        .modal {
+            background: white;
+            border-radius: var(--radius);
+            padding: 24px;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+        }
         .modal h2 { font-size: 20px; margin-bottom: 20px; }
         .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
         .modal-field label { font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px; }
-        .modal-field input { width: 100%; padding: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); }
+        .modal-field input {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+        }
         .modal-buttons { display: flex; gap: 12px; }
-        .btn-save, .btn-cancel { flex: 1; padding: 12px; border-radius: 40px; font-weight: 600; cursor: pointer; border: none; }
+        .btn-save, .btn-cancel {
+            flex: 1;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+        }
         .btn-save { background: var(--accent); color: white; }
         .btn-cancel { background: var(--bg); border: 1px solid var(--border); color: var(--text); }
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #1f2937; color: white; padding: 10px 20px; border-radius: 50px; font-size: 13px; opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 300; box-shadow: 0 4px 12px black; }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c2820;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            z-index: 300;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
         .toast.show { opacity: 1; }
+
+        /* Bouton reset général */
+        .reset-general-btn {
+            background: none;
+            border: none;
+            color: var(--red);
+            font-size: 12px;
+            cursor: pointer;
+            margin-left: 12px;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -101,13 +442,14 @@
         <a href="aide-poids.html" class="help-link">⚖️ Aide poids</a>
     </div>
 
-    <!-- Besoins -->
+    <!-- Besoins Quotidiens -->
     <div class="card">
         <div class="card-header">
             <span class="card-title">🎯 Besoins Quotidiens</span>
             <div class="btn-group">
                 <button class="btn-small" id="editNeedsBtn">✏️ Éditer</button>
-                <button class="btn-small" id="resetDayBtn">🔄 Reset</button>
+                <button class="btn-small" id="resetDayBtn">🔄 Reset jour</button>
+                <button class="btn-small reset-general-btn" id="resetGeneralBtn">🗑️ Reset général</button>
             </div>
         </div>
         <div class="nutrient-grid" id="grid-needs">
@@ -118,7 +460,7 @@
         </div>
     </div>
 
-    <!-- Jauges verticales (calories seule en bas) -->
+    <!-- Jauges verticales -->
     <div class="card">
         <div class="card-header"><span class="card-title">📊 Objectifs (jauges)</span></div>
         <div class="gauge-group">
@@ -127,7 +469,7 @@
             <div class="gauge-item"><div class="gauge-label">Glucides</div><div class="gauge-bar-vertical"><div class="gauge-fill fill-gluc" id="gauge-gluc" style="height:0%"></div></div><div class="gauge-percent" id="gauge-gluc-pct">0%</div><div class="gauge-text" id="gauge-gluc-txt">0 / 250 g</div></div>
         </div>
         <div class="gauge-group" style="margin-bottom:0;">
-            <div class="gauge-item"><div class="gauge-label">Calories</div><div class="gauge-bar-vertical"><div class="gauge-fill" id="gauge-cal" style="height:0%; background:linear-gradient(0deg, #22c55e, #4ade80)"></div></div><div class="gauge-percent" id="gauge-cal-pct">0%</div><div class="gauge-text" id="gauge-cal-txt">0 / 2000 kcal</div></div>
+            <div class="gauge-item"><div class="gauge-label">Calories</div><div class="gauge-bar-vertical"><div class="gauge-fill" id="gauge-cal" style="height:0%; background:linear-gradient(0deg, #2b6e3c, #5a9e6e)"></div></div><div class="gauge-percent" id="gauge-cal-pct">0%</div><div class="gauge-text" id="gauge-cal-txt">0 / 2000 kcal</div></div>
         </div>
     </div>
 
@@ -138,23 +480,24 @@
     <!-- Historique -->
     <div class="card"><div class="card-header"><span class="card-title">📋 Aliments du jour</span></div><div class="history-list" id="historyList"><div class="empty-state" id="emptyState">Aucun aliment ajouté</div></div></div>
 
-    <!-- Ajout aliment -->
+    <!-- Ajout d'un aliment -->
     <div class="card">
         <div class="card-header"><span class="card-title">➕ Ajouter un aliment</span></div>
         <div class="preview-card" id="previewCard"><div class="preview-title">Aperçu</div><div class="preview-empty" id="previewEmpty">Saisissez un aliment et un poids…</div><div id="previewContent" style="display:none"><div class="preview-name" id="previewName"></div><div class="preview-weight" id="previewWeightLabel"></div><div class="nutrient-grid"><div class="nutrient-box"><div class="nutrient-label">Calories</div><div class="nutrient-value small" id="prev-cal">—</div></div><div class="nutrient-box"><div class="nutrient-label">Protéines</div><div class="nutrient-value small" id="prev-prot">—</div></div><div class="nutrient-box"><div class="nutrient-label">Lipides</div><div class="nutrient-value small" id="prev-lip">—</div></div><div class="nutrient-box"><div class="nutrient-label">Glucides</div><div class="nutrient-value small" id="prev-gluc">—</div></div></div></div></div>
-        <div class="suggestions"><input type="text" class="input-field" id="foodInput" placeholder="🔍 Aliment (ex: poulet, banane, riz…)" autocomplete="off"><div class="suggestions-list" id="suggestionsList" style="display:none"></div></div>
+        <div class="suggestions"><input type="text" class="input-field" id="foodInput" placeholder="🔍 Aliment (ex: poulet, banane, lait…)" autocomplete="off"><div class="suggestions-list" id="suggestionsList" style="display:none"></div></div>
         <div class="input-row"><input type="number" class="input-field" id="weightInput" placeholder="Poids (g)" min="1" max="2000" step="1"></div>
         <button class="btn-add" id="addBtn">Ajouter</button>
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal besoins -->
 <div class="modal-overlay" id="modalOverlay"><div class="modal"><h2>🎯 Besoins Quotidiens</h2><div class="modal-grid"><div class="modal-field"><label>Calories (kcal)</label><input type="number" id="edit-cal" placeholder="2000"></div><div class="modal-field"><label>Protéines (g)</label><input type="number" id="edit-prot" placeholder="75"></div><div class="modal-field"><label>Lipides (g)</label><input type="number" id="edit-lip" placeholder="70"></div><div class="modal-field"><label>Glucides (g)</label><input type="number" id="edit-gluc" placeholder="250"></div></div><div class="modal-buttons"><button class="btn-cancel" id="cancelModalBtn">Annuler</button><button class="btn-save" id="saveNeedsBtn">Enregistrer</button></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script src="aliments.js"></script>
 <script>
     (function() {
+        // ---------- État ----------
         let state = {
             needs: { cal: 2000, prot: 75, lip: 70, gluc: 250 },
             consumed: { cal: 0, prot: 0, lip: 0, gluc: 0 },
@@ -162,7 +505,7 @@
             selectedFood: null,
         };
 
-        // ----- MÉMOIRE DES ALIMENTS FRÉQUENTS -----
+        // ---------- Mémoire des fréquences ----------
         let foodFrequency = {};
         try {
             const stored = localStorage.getItem('food-frequency');
@@ -174,46 +517,74 @@
             localStorage.setItem('food-frequency', JSON.stringify(foodFrequency));
         }
 
-        // Fonction pour normaliser une chaîne (supprime accents, minuscule)
-        function normalize(str) {
-            return str.toLowerCase()
-                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^a-z0-9 ]/g, "");
+        // ---------- Recherche intelligente (catégories/synonymes) ----------
+        // Dictionnaire de catégories : le mot clé de l'utilisateur déclenche l'ajout de mots-clés à rechercher dans les labels
+        const categoryMap = {
+            "fromage": ["gruyère", "emmental", "camembert", "brie", "chèvre", "roquefort", "bleu", "mozzarella", "parmesan", "comté", "beaufort", "raclette", "reblochon", "cheddar", "gouda", "feta", "fromage blanc", "ricotta", "st morêt", "boursin", "kiri", "vache qui rit", "fromage"],
+            "lait": ["lait entier", "lait demi", "lait écrémé", "lait concentré", "lait en poudre", "lait de chèvre", "lait de brebis", "lait sans lactose", "boisson amande", "boisson soja", "boisson avoine", "lait d'avoine", "lait de coco"],
+            "viande": ["poulet", "dinde", "boeuf", "porc", "veau", "agneau", "canard", "lapin", "steak haché", "rôti", "côte", "filet", "magret", "confit", "jambon", "saucisse", "merguez", "bacon", "lardon", "pâté", "rillettes"],
+            "fruit": ["pomme", "poire", "banane", "orange", "clémentine", "fraise", "framboise", "myrtille", "raisin", "cerise", "abricot", "pêche", "nectarine", "prune", "kiwi", "ananas", "mangue", "pastèque", "melon", "citron", "pamplemousse", "figue", "datte"],
+            "légume": ["brocoli", "chou fleur", "épinard", "tomate", "concombre", "carotte", "courgette", "poivron", "champignon", "haricot vert", "salade", "avocat", "oignon", "ail", "poireau", "pomme de terre", "patate douce", "aubergine", "betterave", "radis", "courge", "potiron", "artichaut", "asperge"],
+            "poisson": ["saumon", "thon", "cabillaud", "colin", "merlu", "sardine", "maquereau", "hareng", "anchois", "truite", "sole", "raie", "rouget", "dorade", "bar", "crevette", "moule", "huitre", "calamar", "surimi"],
+            "céréale": ["riz", "pâtes", "blé", "avoine", "quinoa", "boulgour", "semoule", "maïs", "pain", "baguette", "biscotte", "cracker", "granola", "muesli", "cornflakes", "galette", "tortilla"],
+            "légumineuse": ["lentille", "pois chiche", "haricot blanc", "haricot rouge", "flageolet", "fève", "edamame", "tofu", "soja"],
+            "snack": ["chips", "tuc", "belin", "pringles", "doritos", "popcorn", "bretzel", "pretzel", "cacahuète", "noix", "amande", "noisette", "mélange"],
+            "dessert": ["glace", "sorbet", "yaourt", "fromage blanc", "petit suisse", "crème caramel", "flan", "mousse", "brownie", "cookie", "madeleine", "gâteau", "biscuit", "chocolat", "barre", "nutella"]
+        };
+
+        // Fonction qui élargit la recherche en fonction de la catégorie
+        function expandQuery(query) {
+            const q = query.toLowerCase().trim();
+            let expanded = [q];
+            for (let [cat, keywords] of Object.entries(categoryMap)) {
+                if (cat.includes(q) || q.includes(cat)) {
+                    expanded = expanded.concat(keywords);
+                } else {
+                    // Vérifier si l'un des mots-clés correspond à la requête (ex: "gruyère" -> "fromage")
+                    for (let kw of keywords) {
+                        if (kw.includes(q) || q.includes(kw)) {
+                            expanded = expanded.concat([cat]);
+                            break;
+                        }
+                    }
+                }
+            }
+            // Supprimer les doublons
+            return [...new Set(expanded)];
         }
 
-        // Fonction de suggestion améliorée (score + tri intelligent)
-        function getSmartSuggestions(query, maxResults = 6) {
+        // Fonction de suggestion améliorée avec catégories et fréquence
+        function getSmartSuggestions(query, maxResults = 8) {
             if (!query || query.length < 2) return [];
-            const normalizedQuery = normalize(query);
-            // Transformer l'objet en tableau avec score
+            const searchTerms = expandQuery(query);
+            const normalizedQuery = query.toLowerCase().trim();
             const entries = Object.entries(foodDB);
             const scored = entries.map(([key, data]) => {
-                const normKey = normalize(key);
-                const normLabel = normalize(data.label);
                 let score = 0;
-                // Existe-t-il une correspondance ?
-                if (normKey.includes(normalizedQuery) || normLabel.includes(normalizedQuery)) {
-                    // Augmenter le score si le nom commence par la requête
-                    if (normLabel.startsWith(normalizedQuery) || normKey.startsWith(normalizedQuery)) score += 10;
-                    // Augmenter selon la fréquence d'ajout
-                    const freq = foodFrequency[key] || 0;
-                    score += freq * 5; // plus on l'ajoute souvent, plus il remonte
-                    // Pénaliser les longs labels (pour éviter les descriptions trop longues)
-                    score -= data.label.length * 0.1;
-                    // Score minimum 1
-                    if (score < 1) score = 1;
+                const label = data.label.toLowerCase();
+                // Score pour la correspondance exacte ou partielle
+                for (let term of searchTerms) {
+                    if (label.includes(term)) {
+                        score += 10;
+                        if (label.startsWith(term)) score += 5;
+                    }
                 }
+                // Bonus si le nom de la clé contient directement la requête
+                if (key.includes(normalizedQuery)) score += 8;
+                // Fréquence d'utilisation
+                const freq = foodFrequency[key] || 0;
+                score += freq * 5;
+                // booster les aliments courts et précis
+                score -= data.label.length * 0.05;
+                if (score < 0) score = 0;
                 return { key, data, score };
             });
-            // Filtrer ceux avec score > 0, trier par score décroissant, puis par longueur du label (optionnel)
             const filtered = scored.filter(item => item.score > 0);
             filtered.sort((a, b) => b.score - a.score);
-            // Prendre les premiers maxResults
             return filtered.slice(0, maxResults).map(item => ({ key: item.key, data: item.data }));
         }
 
-        // --- Reste du code inchangé (DOM, updateUI, etc.) ---
-        // (Les fonctions updateUI, renderHistory, deleteItem, etc. restent strictement identiques)
+        // ---------- DOM éléments ----------
         const foodInput = document.getElementById('foodInput');
         const weightInput = document.getElementById('weightInput');
         const suggestionsList = document.getElementById('suggestionsList');
@@ -230,6 +601,7 @@
         const toast = document.getElementById('toast');
         const historyList = document.getElementById('historyList');
 
+        // ---------- Initialisation et sauvegarde ----------
         function init() {
             const saved = localStorage.getItem('nutri-state');
             const savedDate = localStorage.getItem('nutri-date');
@@ -237,7 +609,10 @@
             if (saved) {
                 const parsed = JSON.parse(saved);
                 state.needs = parsed.needs;
-                if (savedDate === today) { state.consumed = parsed.consumed; state.history = parsed.history; }
+                if (savedDate === today) {
+                    state.consumed = parsed.consumed;
+                    state.history = parsed.history;
+                }
             }
             document.getElementById('todayDate').textContent = new Date().toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
             localStorage.setItem('nutri-date', today);
@@ -245,6 +620,7 @@
         }
         function saveState() { localStorage.setItem('nutri-state', JSON.stringify(state)); }
 
+        // ---------- Mise à jour UI ----------
         function updateUI() {
             const { needs, consumed } = state;
             document.getElementById('need-cal').textContent = needs.cal;
@@ -280,12 +656,19 @@
             setGauge('gauge-prot', consumed.prot, needs.prot, 'gauge-prot-txt', 'gauge-prot-pct', 'g');
             setGauge('gauge-lip', consumed.lip, needs.lip, 'gauge-lip-txt', 'gauge-lip-pct', 'g');
             setGauge('gauge-gluc', consumed.gluc, needs.gluc, 'gauge-gluc-txt', 'gauge-gluc-pct', 'g');
+
             renderHistory();
         }
 
         function renderHistory() {
             historyList.innerHTML = '';
-            if (state.history.length === 0) { const emptyDiv = document.createElement('div'); emptyDiv.className = 'empty-state'; emptyDiv.textContent = 'Aucun aliment ajouté'; historyList.appendChild(emptyDiv); return; }
+            if (state.history.length === 0) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'empty-state';
+                emptyDiv.textContent = 'Aucun aliment ajouté';
+                historyList.appendChild(emptyDiv);
+                return;
+            }
             [...state.history].reverse().forEach((item, idx) => {
                 const originalIndex = state.history.length - 1 - idx;
                 const el = document.createElement('div');
@@ -293,13 +676,21 @@
                 el.innerHTML = `<div><div class="history-name">${item.label} <span style="font-weight:400;color:var(--text-muted);font-size:11px">${item.weight}g</span></div><div class="history-sub">${Math.round(item.prot)}g prot · ${Math.round(item.lip)}g lip · ${Math.round(item.gluc)}g gluc</div></div><div style="display:flex;align-items:center;gap:8px"><div class="history-cals">${Math.round(item.cal)} kcal</div><button class="history-delete" data-index="${originalIndex}" aria-label="Supprimer">×</button></div>`;
                 historyList.appendChild(el);
             });
-            document.querySelectorAll('.history-delete').forEach(btn => btn.addEventListener('click', (e) => { const idx = e.currentTarget.getAttribute('data-index'); if (idx !== null) deleteItem(parseInt(idx)); }));
+            document.querySelectorAll('.history-delete').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = e.currentTarget.getAttribute('data-index');
+                    if (idx !== null) deleteItem(parseInt(idx));
+                });
+            });
         }
 
         function deleteItem(index) {
             const item = state.history[index];
             if (!item) return;
-            state.consumed.cal -= item.cal; state.consumed.prot -= item.prot; state.consumed.lip -= item.lip; state.consumed.gluc -= item.gluc;
+            state.consumed.cal -= item.cal;
+            state.consumed.prot -= item.prot;
+            state.consumed.lip -= item.lip;
+            state.consumed.gluc -= item.gluc;
             state.history.splice(index, 1);
             saveState(); updateUI(); showToast('🗑️ Aliment supprimé');
         }
@@ -313,20 +704,19 @@
             const entry = { label: food.label, weight: weight, cal: food.cal * factor, prot: food.prot * factor, lip: food.lip * factor, gluc: food.gluc * factor };
             state.history.push(entry);
             state.consumed.cal += entry.cal; state.consumed.prot += entry.prot; state.consumed.lip += entry.lip; state.consumed.gluc += entry.gluc;
-            // Incrémenter la fréquence pour l'aliment
             const foodKey = Object.entries(foodDB).find(([k, v]) => v === food)?.[0];
             if (foodKey) incrementFrequency(foodKey);
             foodInput.value = ''; weightInput.value = ''; state.selectedFood = null; previewEmpty.style.display = ''; previewContent.style.display = 'none';
             saveState(); updateUI(); showToast(`✅ ${food.label} ajouté (${Math.round(entry.cal)} kcal)`);
         }
 
-        // Nouvelle fonction de suggestions utilisant getSmartSuggestions
+        // Suggestions avec recherche intelligente
         foodInput.addEventListener('input', function() {
             const query = this.value.toLowerCase().trim();
             state.selectedFood = null;
             updatePreview();
             if (query.length < 2) { hideSuggestions(); return; }
-            const matches = getSmartSuggestions(query, 6);
+            const matches = getSmartSuggestions(query, 8);
             if (matches.length === 0) { hideSuggestions(); return; }
             suggestionsList.innerHTML = '';
             matches.forEach(({key, data}) => {
@@ -355,9 +745,21 @@
         addBtn.addEventListener('click', addFood);
         weightInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); addFood(); } });
 
-        function resetDay() { if (confirm('Réinitialiser toute la journée ?')) { state.consumed = { cal:0, prot:0, lip:0, gluc:0 }; state.history = []; saveState(); updateUI(); showToast('🔄 Journée réinitialisée'); } }
+        // Reset jour
+        function resetDay() { if (confirm('Réinitialiser la journée (repas du jour) ?')) { state.consumed = { cal:0, prot:0, lip:0, gluc:0 }; state.history = []; saveState(); updateUI(); showToast('🔄 Journée réinitialisée'); } }
         document.getElementById('resetDayBtn').addEventListener('click', resetDay);
 
+        // Reset général (efface tout localStorage et recharge)
+        function resetGeneral() {
+            if (confirm('⚠️ RÉINITIALISATION GÉNÉRALE ⚠️\nToutes les données (besoins, historique, fréquences) seront définitivement effacées.\nÊtes-vous absolument sûr ?')) {
+                localStorage.clear(); // efface tout (état, fréquence, date)
+                // Recharger la page pour repartir à zéro
+                window.location.reload();
+            }
+        }
+        document.getElementById('resetGeneralBtn').addEventListener('click', resetGeneral);
+
+        // Modal besoins
         function openModal() { document.getElementById('edit-cal').value = state.needs.cal; document.getElementById('edit-prot').value = state.needs.prot; document.getElementById('edit-lip').value = state.needs.lip; document.getElementById('edit-gluc').value = state.needs.gluc; modalOverlay.classList.add('open'); }
         function closeModal() { modalOverlay.classList.remove('open'); }
         function saveNeeds() {
@@ -372,6 +774,7 @@
         modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 
         function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); }
+
         init();
     })();
 </script>
