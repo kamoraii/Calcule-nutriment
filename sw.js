@@ -1,4 +1,4 @@
-const CACHE_NAME = "nutrition-09/05/26";
+const CACHE_NAME = "nutrition--14/05/26";
 const urlsToCache = [
   "./",
   "./index.html",
