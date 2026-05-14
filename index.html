@@ -229,34 +229,7 @@
 <script src="aliments.js"></script>
 <script>
     (function() {
-        // ========== GESTION DU THÈME CLAIR/SOMBRE ==========
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            const storedTheme = localStorage.getItem('theme');
-            if (storedTheme === 'dark') {
-                document.body.classList.remove('light');
-                document.body.classList.add('dark');
-                themeToggle.textContent = '☀️';
-            } else {
-                document.body.classList.add('light');
-                themeToggle.textContent = '🌙';
-            }
-            themeToggle.addEventListener('click', () => {
-                if (document.body.classList.contains('light')) {
-                    document.body.classList.remove('light');
-                    document.body.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                    themeToggle.textContent = '☀️';
-                } else {
-                    document.body.classList.remove('dark');
-                    document.body.classList.add('light');
-                    localStorage.setItem('theme', 'light');
-                    themeToggle.textContent = '🌙';
-                }
-            });
-        }
-
-        // ========== ÉTAT DE L'APPLICATION ==========
+        // ========== ÉTAT ==========
         let state = {
             needs: { cal: 2000, prot: 75, lip: 70, gluc: 250 },
             consumed: { cal: 0, prot: 0, lip: 0, gluc: 0 },
@@ -276,9 +249,9 @@
             localStorage.setItem('food-frequency', JSON.stringify(foodFrequency));
         }
 
-        // ========== RECHERCHE INTELLIGENTE (CATÉGORIES) ==========
+        // ========== RECHERCHE INTELLIGENTE (CATÉGORIES + FREQUENCE MAIS SANS POLLUTION) ==========
         const categoryMap = {
-            "fromage": ["gruyère", "emmental", "camembert", "brie", "chèvre", "roquefort", "bleu", "mozzarella", "parmesan", "comté", "beaufort", "raclette", "reblochon", "cheddar", "gouda", "feta", "fromage blanc", "ricotta", "st morêt", "boursin", "kiri", "vache qui rit", "fromage"],
+            "fromage": ["gruyère", "emmental", "camembert", "brie", "chèvre", "roquefort", "bleu", "mozzarella", "parmesan", "comté", "beaufort", "raclette", "reblochon", "cheddar", "gouda", "feta", "fromage blanc", "ricotta", "st morêt", "boursin", "kiri", "vache qui rit"],
             "lait": ["lait entier", "lait demi", "lait écrémé", "lait concentré", "lait en poudre", "lait de chèvre", "lait de brebis", "lait sans lactose", "boisson amande", "boisson soja", "boisson avoine", "lait d'avoine", "lait de coco"],
             "viande": ["poulet", "dinde", "boeuf", "porc", "veau", "agneau", "canard", "lapin", "steak haché", "rôti", "côte", "filet", "magret", "confit", "jambon", "saucisse", "merguez", "bacon", "lardon", "pâté", "rillettes"],
             "fruit": ["pomme", "poire", "banane", "orange", "clémentine", "fraise", "framboise", "myrtille", "raisin", "cerise", "abricot", "pêche", "nectarine", "prune", "kiwi", "ananas", "mangue", "pastèque", "melon", "citron", "pamplemousse", "figue", "datte"],
@@ -308,29 +281,36 @@
             return [...new Set(expanded)];
         }
 
-        function getSmartSuggestions(query, maxResults = 8) {
+        function getSmartSuggestions(query, maxResults = 10) {
             if (!query || query.length < 2) return [];
             const searchTerms = expandQuery(query);
             const normalizedQuery = query.toLowerCase().trim();
             const entries = Object.entries(foodDB);
-            const scored = entries.map(([key, data]) => {
+            // Filtrer d'abord les aliments qui correspondent à au moins un terme de recherche (dans label ou clé)
+            let candidates = entries.filter(([key, data]) => {
+                const label = data.label.toLowerCase();
+                const normKey = key.toLowerCase();
+                return searchTerms.some(term => label.includes(term) || normKey.includes(term));
+            });
+            // Calculer un score pour le tri (fréquence + bonus si commence par la requête)
+            const scored = candidates.map(([key, data]) => {
                 let score = 0;
                 const label = data.label.toLowerCase();
-                for (let term of searchTerms) {
-                    if (label.includes(term)) {
-                        score += 10;
-                        if (label.startsWith(term)) score += 5;
-                    }
-                }
-                if (key.includes(normalizedQuery)) score += 8;
+                // Bonus pour correspondance exacte du début
+                if (label.startsWith(normalizedQuery) || key.toLowerCase().startsWith(normalizedQuery)) score += 10;
+                // Fréquence (stockée)
                 const freq = foodFrequency[key] || 0;
-                score += freq * 5;
-                score -= data.label.length * 0.05;
-                return { key, data, score: Math.max(0, score) };
+                score += freq * 2;  // poids modéré pour ne pas dominer
+                // Bonus si le label contient exactement la requête en mot entier (optionnel)
+                // Pour éviter que les aliments très longs descendent trop
+                return { key, data, score };
             });
-            const filtered = scored.filter(item => item.score > 0);
-            filtered.sort((a, b) => b.score - a.score);
-            return filtered.slice(0, maxResults).map(item => ({ key: item.key, data: item.data }));
+            // Trier par score décroissant, puis par longueur de label (les plus courts d'abord)
+            scored.sort((a, b) => {
+                if (a.score !== b.score) return b.score - a.score;
+                return a.data.label.length - b.data.label.length;
+            });
+            return scored.slice(0, maxResults).map(item => ({ key: item.key, data: item.data }));
         }
 
         // ========== DOM ==========
@@ -350,26 +330,24 @@
         const toast = document.getElementById('toast');
         const historyList = document.getElementById('historyList');
 
-        // ========== INIT ==========
+        // ========== INIT (plus de réinitialisation à minuit) ==========
         function init() {
             const saved = localStorage.getItem('nutri-state');
-            const savedDate = localStorage.getItem('nutri-date');
-            const today = new Date().toDateString();
+            // On ne vérifie plus la date pour réinitialiser. On charge simplement.
             if (saved) {
                 const parsed = JSON.parse(saved);
                 state.needs = parsed.needs;
-                if (savedDate === today) {
-                    state.consumed = parsed.consumed;
-                    state.history = parsed.history;
-                }
+                state.consumed = parsed.consumed;
+                state.history = parsed.history;
             }
             document.getElementById('todayDate').textContent = new Date().toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-            localStorage.setItem('nutri-date', today);
+            // On ne modifie pas nutri-date, on le garde ou on l'ignore. On ne l'utilise plus.
             updateUI();
         }
+
         function saveState() { localStorage.setItem('nutri-state', JSON.stringify(state)); }
 
-        // ========== UI ==========
+        // ========== UI (inchangée) ==========
         function updateUI() {
             const { needs, consumed } = state;
             document.getElementById('need-cal').textContent = needs.cal;
@@ -465,7 +443,7 @@
             state.selectedFood = null;
             updatePreview();
             if (query.length < 2) { hideSuggestions(); return; }
-            const matches = getSmartSuggestions(query, 8);
+            const matches = getSmartSuggestions(query, 10);
             if (matches.length === 0) { hideSuggestions(); return; }
             suggestionsList.innerHTML = '';
             matches.forEach(({key, data}) => {
@@ -539,6 +517,33 @@
         modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 
         function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); }
+
+        // Gestion du thème clair/sombre
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme === 'dark') {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                themeToggle.textContent = '☀️';
+            } else {
+                document.body.classList.add('light');
+                themeToggle.textContent = '🌙';
+            }
+            themeToggle.addEventListener('click', () => {
+                if (document.body.classList.contains('light')) {
+                    document.body.classList.remove('light');
+                    document.body.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.textContent = '☀️';
+                } else {
+                    document.body.classList.remove('dark');
+                    document.body.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.textContent = '🌙';
+                }
+            });
+        }
 
         init();
     })();
